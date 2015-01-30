@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Infection\Unity Project\Assets\Scripts\MainMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MechMain.cs">
     <Files>
-      <File FileName="..\Infection\Unity Project\Assets\Scripts\MainMenu.cs" Line="8" Column="1" />
+      <File FileName="Assets\Scripts\MechMain.cs" Line="69" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
