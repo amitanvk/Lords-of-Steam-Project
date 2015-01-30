@@ -66,14 +66,14 @@ public class MechMain : MonoBehaviour {
 			{
 				lockOn = !lockOn;
 			}
-			rigidbody.AddForce (Input.GetAxis ("Vertical1") * transform.forward * moveForce);
+			rigidbody.AddForce (Input.GetAxisRaw ("Vertical1") * transform.forward * moveForce);
 			if(lockOn)
 			{
-				rigidbody.AddForce (Input.GetAxis ("Horizontal1") * transform.right * moveForce);
+				rigidbody.AddForce (Input.GetAxisRaw ("Horizontal1") * transform.right * moveForce);
 			}
 			else
 			{
-				yaw = Input.GetAxis("Horizontal1") * (Time.fixedDeltaTime * rotationSpeed);
+				yaw = Input.GetAxisRaw("Horizontal1") * (Time.fixedDeltaTime * rotationSpeed);
 				AddRot.eulerAngles = new Vector3(0, yaw,0);
 				rigidbody.rotation *= AddRot;
 			}
@@ -84,14 +84,14 @@ public class MechMain : MonoBehaviour {
 			{
 				lockOn = !lockOn;
 			}
-			rigidbody.AddForce (Input.GetAxis ("Vertical2") * -1 * transform.forward * moveForce);
+			rigidbody.AddForce (Input.GetAxisRaw ("Vertical2") * -1 * transform.forward * moveForce);
 			if(lockOn)
 			{
-				rigidbody.AddForce (Input.GetAxis ("Horizontal2") * transform.right * moveForce);
+				rigidbody.AddForce (Input.GetAxisRaw ("Horizontal2") * transform.right * moveForce);
 			}
 			else
 			{
-				yaw = Input.GetAxis("Horizontal2") * (Time.fixedDeltaTime * rotationSpeed);
+				yaw = Input.GetAxisRaw("Horizontal2") * (Time.fixedDeltaTime * rotationSpeed);
 				AddRot.eulerAngles = new Vector3(0, yaw,0);
 				rigidbody.rotation *= AddRot;
 			}
