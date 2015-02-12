@@ -22,7 +22,7 @@ public class AutoWeapon : Weapon {
 		Inputs();
 	}
 	void Inputs(){
-		if (Input.GetButton ("Fire11") && GetComponentInParent<MechMain> ().energy >= enCost && canFire == true) {
+		if (Input.GetButton (shoot) && GetComponentInParent<MechMain> ().energy >= enCost && canFire == true) {
 			isFiring = true;
 		} else {
 			isFiring = false;

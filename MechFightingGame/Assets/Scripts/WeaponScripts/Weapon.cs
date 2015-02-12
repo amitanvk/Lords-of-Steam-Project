@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour {
 	public Transform spawn; // from where we will shoot
 	public GameObject bullet;// what will be shot
 	public float enCost; //how much energy is used
+	public string shoot; // button for our shot
 	//public float kb; //knockback... will cover this later 
 	void Start () {
 	
