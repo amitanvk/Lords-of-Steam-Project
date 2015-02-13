@@ -35,6 +35,7 @@ public class MechMain : MonoBehaviour {
 		regen ();
 		control ();
 		state ();
+		runGUI ();
 	}
 
 
@@ -45,8 +46,7 @@ public class MechMain : MonoBehaviour {
 		{
 			energy += energyRegen;
 		}
-		healthMeter.text = "Health: " + health;
-		energyMeter.text = "Energy: " + energy;
+
 	}
 
 	void control()
@@ -118,5 +118,14 @@ public class MechMain : MonoBehaviour {
 		{
 			health -= 0.25f;
 		}
+	}
+
+	void runGUI()
+	{
+		healthMeter.text = "Health: " + health;
+		energyMeter.text = "Energy: " + energy;
+		Quaternion rotater = Quaternion.identity;
+		rotater.eulerAngles = new Vector3 (0, 0, -60 + health * 3);
+		//healthPointer.rotation = rotater;
 	}
 }
