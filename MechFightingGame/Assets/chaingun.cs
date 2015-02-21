@@ -5,6 +5,7 @@ public class chaingun : MonoBehaviour {
 
 	// Use this for initialization
 	public GameObject parentObject;
+	public AudioClip chainGun;
 	void Start () {
 	
 	}
@@ -16,6 +17,10 @@ public class chaingun : MonoBehaviour {
 		{
 				if(GetComponentInParent<MechMain>().energy > 0)
 				{
+				if(!audio.isPlaying)
+				{
+					audio.PlayOneShot(chainGun);
+				}
 				GetComponentInParent<MechMain>().energy -=2;
 				particleSystem.Emit(1);
 				RaycastHit hit;
@@ -38,6 +43,10 @@ public class chaingun : MonoBehaviour {
 		{
 			if(GetComponentInParent<MechMain>().energy > 0)
 			{
+				if(!audio.isPlaying)
+				{
+					audio.PlayOneShot(chainGun);
+				}
 				GetComponentInParent<MechMain>().energy -=2;
 				particleSystem.Emit(1);
 				RaycastHit hit;

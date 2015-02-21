@@ -6,6 +6,7 @@ public class testShotgun : MonoBehaviour {
 	public bool active;
 	public GameObject parentObject;
 	ParticleSystem particle;
+	public AudioClip shotgun;
 	// Use this for initialization
 	void Start () {
 		active = false;
@@ -18,6 +19,10 @@ public class testShotgun : MonoBehaviour {
 		{
 
 			if (Input.GetButtonDown ("Fire11") && !active && GetComponentInParent<MechMain>().energy > 10) {
+				if(!audio.isPlaying)
+				{
+					audio.PlayOneShot(shotgun);
+				}
 				particle.Emit (10);
 				GetComponentInParent<MechMain>().energy -=10;
 				StartCoroutine (fire ());
@@ -27,6 +32,10 @@ public class testShotgun : MonoBehaviour {
 		{
 			
 			if (Input.GetButtonDown ("Fire12") && !active && GetComponentInParent<MechMain>().energy > 10) {
+				if(!audio.isPlaying)
+				{
+					audio.PlayOneShot(shotgun);
+				}
 				particle.Emit (10);
 				GetComponentInParent<MechMain>().energy -=10;
 				StartCoroutine (fire ());
