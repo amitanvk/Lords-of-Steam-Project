@@ -3,41 +3,79 @@ using System.Collections;
 
 public class MechMain : MonoBehaviour {
 
-	public AudioClip steam;
+	[SerializeField]
+	private AudioClip steam;
+	
+	[SerializeField]
+	private GameObject enemyMech;
+	
+	[SerializeField]
+	private GUIText healthMeter;
+	[SerializeField]
+	private GUIText energyMeter;
+	
+	[SerializeField]
+	private Transform healthBar;
+	[SerializeField]
+	private Transform energyBar;
 
+	[SerializeField]
+	private float healthMax;
+	[SerializeField]
+	private float energyMax;
+	[SerializeField]
+	private float healthRegen;
+	[SerializeField]
+	private float energyRegen;
+	private float health;
+	public float Health {
+		get {
+			return health;
+		}
+		set {
+			health = value;
+		}
+	}
+	
+	private float energy;
+	public float Energy {
+		get {
+			return energy;
+		}
+		set {
+			energy = value;
+		}
+	}
 
-	public GameObject enemyMech;
+	
+	[SerializeField]
+	private float moveForce;
+	[SerializeField]
+	private float dashForce;
+	[SerializeField]
+	private float defaultForce;
+	[SerializeField]
+	private float hoverForce;
+	[SerializeField]
+	private float rotationSpeed;
+	[SerializeField]
+	private float jumpForce;
+	
+	[SerializeField]
+	private string Vertical;
+	[SerializeField]
+	private string Horizontal;
+	[SerializeField]
+	private string dash;
+	[SerializeField]
+	private string locker;
+	[SerializeField]
+	private string jump;
 
-	public GUIText healthMeter;
-	public GUIText energyMeter;
-
-	public Transform healthBar;
-	public Transform energyBar;
-
-	public float health;
-	public float energy;
-	public float healthMax;
-	public float energyMax;
-	public float healthRegen;
-	public float energyRegen;
-
-	public float moveForce;
-	public float dashForce;
-	public float defaultForce;
-	public float hoverForce;
-	public float rotationSpeed;
-	public float jumpForce;
-
-	public string Vertical;
-	public string Horizontal;
-	public string dash;
-	public string locker;
-	public string jump;
-
-	public bool lockOn;
-	public bool dashOn;
-	public bool overHeat;
-	public bool jumping;
+	private bool lockOn;
+	private bool dashOn;
+	private bool overHeat;
+	private bool jumping;
 
 	// Use this for initialization
 	void Start () {
@@ -47,39 +85,39 @@ public class MechMain : MonoBehaviour {
 		dashOn = false;	
 		overHeat = false;
 
+		health = healthMax;
+		energy = energyMax;
+
 		defaultForce = moveForce;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		UpdateGUI ();
+	}
 
-		updateGUI ();
-
-		regen ();
-		control ();
-		state ();
-		updateGUI ();
+	void FixedUpdate() {
+		Regen ();
+		Control ();
+		State ();
 	}
 
 
 	// CONTROLLER METHOD 
-	void control()
+	void Control()
 	{
 		Quaternion AddRot = Quaternion.identity;
 		float yaw = 0;
-		
-		if (lockOn) 
-		{
-			transform.LookAt (enemyMech.transform.position);
-		}
 
 		if(Input.GetButtonDown(locker))
 		{
 			lockOn = !lockOn;
 		}
-
+		if (lockOn) 
+		{
+			transform.LookAt (enemyMech.transform.position);
+		}
 		if(Input.GetButton(dash) && energy > 0.0f) {
-			
 			moveForce = dashForce;
 			dashOn = true;
 			if(!audio.isPlaying)
@@ -87,11 +125,9 @@ public class MechMain : MonoBehaviour {
 				audio.PlayOneShot(steam);
 			}
 			energy -= energyRegen;
-			
 		} else {
 			dashOn = false;
 			moveForce = defaultForce;
-			
 		}
 
 		if (Input.GetButton (jump) && energy > 0.0f) 
@@ -117,45 +153,39 @@ public class MechMain : MonoBehaviour {
 		{
 			yaw = Input.GetAxisRaw(Horizontal) * (Time.fixedDeltaTime * rotationSpeed);
 			AddRot.eulerAngles = new Vector3(0, yaw,0);
-
 		}
 		rigidbody.rotation *= AddRot;
 		rigidbody.AddForce (Input.GetAxisRaw (Vertical) * transform.forward * moveForce,ForceMode.Acceleration);
 	}
 
-	void regen()
+	void Regen()
 	{
-		if (energy < energyMax)
-			if (!dashOn && !jumping && energy < energyMax)
+		if (!dashOn && !jumping && energy < energyMax)
 		{
 			energy += energyRegen;
 		}
 	}
 
-
-	void state()
+	void State()
 	{
 		if (health <= 0) {
 			Destroy(gameObject);
-				}
-
+		}
 	}
 
-	void updateGUI()
+	void UpdateGUI()
 	{
+		const float scaling = 1.45f;
+		float healthDisplay = Mathf.Clamp (health, 0f, healthMax);
+		float energyDisplay = Mathf.Clamp (energy, 0f, energyMax);
+		Vector3 tempHealth = healthBar.localScale;
+		Vector3 tempEnergy = energyBar.localScale;
+		tempHealth.x = (health / healthMax) * scaling;
+		tempEnergy.x = (energy / energyMax) * scaling;
 		healthMeter.text = "Health: " + health;
-		healthBar.localScale = new Vector3((health/healthMax) * 1.45f,0.1395328f,0);
-
-		if (energy > 0.0f) 
-		{
-			energyMeter.text = "Energy: " + energy;
-			energyBar.localScale = new Vector3((energy/energyMax) * 1.45f,0.1260037f,0);
-		} 
-		else 
-		{
-			energyMeter.text = "Energy: " + 0.0f;
-			energyBar.localScale = new Vector3(0,0.1260037f,0);
-		}
+		energyMeter.text = "Energy: " + energyDisplay;
+		energyBar.localScale = tempEnergy;
+		healthBar.localScale = tempHealth;
 	}
 	//TRIGGER METHODS
 	void OnTriggerStay(Collider other)

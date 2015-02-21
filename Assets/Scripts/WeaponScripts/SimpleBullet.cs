@@ -38,13 +38,12 @@ public class SimpleBullet : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		if ( other.tag == "mech2") {
 			Debug.Log("mech 2 hit");
-			other.GetComponentInParent<MechMain>().health -= damage;
+			other.GetComponentInParent<MechMain>().Health -= damage;
 			Destroy(gameObject);
-			
 		}
 		if ((other.tag == "mech1")) {
 			Debug.Log("mech1 hit");
-			other.GetComponentInParent<MechMain>().health -= damage;
+			other.GetComponentInParent<MechMain>().Health -= damage;
 			Destroy(gameObject);
 		}
 

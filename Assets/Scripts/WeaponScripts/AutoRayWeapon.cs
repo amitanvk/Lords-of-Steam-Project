@@ -13,7 +13,7 @@ public class AutoRayWeapon : AutoWeapon {
 		Inputs();
 	}
 	void Inputs(){
-		if (Input.GetButton ("Fire11") && GetComponentInParent<MechMain> ().energy >= enCost && canFire == true) {
+		if (Input.GetButton ("Fire11") && GetComponentInParent<MechMain> ().Energy >= enCost && canFire == true) {
 				isFiring = true;
 		} else {
 				isFiring = false;
@@ -22,7 +22,7 @@ public class AutoRayWeapon : AutoWeapon {
 		if (isFiring == true) {
 			counter += Time.deltaTime;
 			if (rof < counter) {
-				GetComponentInParent<MechMain>().energy -=2;
+				GetComponentInParent<MechMain>().Energy -=2;
 				RaycastHit hit;
 				LayerMask layerMask = 1 << 2;
 				layerMask = ~layerMask;
@@ -34,7 +34,7 @@ public class AutoRayWeapon : AutoWeapon {
 					if(hit.collider.tag == "mech2")
 					{
 						Debug.Log("mech2 hit");
-						hit.collider.gameObject.GetComponentInParent<MechMain>().health -= 0.5f;
+						hit.collider.gameObject.GetComponentInParent<MechMain>().Health -= 0.5f;
 					}
 				}
 			}

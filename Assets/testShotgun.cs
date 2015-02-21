@@ -18,26 +18,26 @@ public class testShotgun : MonoBehaviour {
 		if (parentObject.tag == "mech1") 
 		{
 
-			if (Input.GetButtonDown ("Fire11") && !active && GetComponentInParent<MechMain>().energy > 10) {
+			if (Input.GetButtonDown ("Fire11") && !active && GetComponentInParent<MechMain>().Energy > 10) {
 				if(!audio.isPlaying)
 				{
 					audio.PlayOneShot(shotgun);
 				}
 				particle.Emit (10);
-				GetComponentInParent<MechMain>().energy -=10;
+				GetComponentInParent<MechMain>().Energy -=10;
 				StartCoroutine (fire ());
 			}
 		}
 		if (parentObject.tag == "mech2") 
 		{
 			
-			if (Input.GetButtonDown ("Fire12") && !active && GetComponentInParent<MechMain>().energy > 10) {
+			if (Input.GetButtonDown ("Fire12") && !active && GetComponentInParent<MechMain>().Energy > 10) {
 				if(!audio.isPlaying)
 				{
 					audio.PlayOneShot(shotgun);
 				}
 				particle.Emit (10);
-				GetComponentInParent<MechMain>().energy -=10;
+				GetComponentInParent<MechMain>().Energy -=10;
 				StartCoroutine (fire ());
 			}
 		}
@@ -55,13 +55,13 @@ public class testShotgun : MonoBehaviour {
 		if (active && (other.tag == "mech2")) {
 			Debug.Log("mech 2 hit");
 			active = false;
-			other.GetComponentInParent<MechMain>().health -= 10;
+			other.GetComponentInParent<MechMain>().Health -= 10;
 
 				}
 		if (active && (other.tag == "mech1")) {
 			Debug.Log("mech1 hit");
 			active = false;
-			other.GetComponentInParent<MechMain>().health -= 10;
+			other.GetComponentInParent<MechMain>().Health -= 10;
 			
 		}
 	}

@@ -22,7 +22,7 @@ public class AutoWeapon : Weapon {
 		Inputs();
 	}
 	void Inputs(){
-		if (Input.GetButton ("Fire11") && GetComponentInParent<MechMain> ().energy >= enCost && canFire == true) {
+		if (Input.GetButton ("Fire11") && GetComponentInParent<MechMain> ().Energy >= enCost && canFire == true) {
 			isFiring = true;
 		} else {
 			isFiring = false;
@@ -37,7 +37,7 @@ public class AutoWeapon : Weapon {
 				clone.rigidbody.AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
 				clone.rigidbody.AddForce((clone.transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
 				clone.rigidbody.AddForce((clone.transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);
-				GetComponentInParent<MechMain> ().energy -= enCost;
+				GetComponentInParent<MechMain> ().Energy -= enCost;
 				bNum--;
 				counter = 0;
 				if (bNum <= 0 || !isFiring) {

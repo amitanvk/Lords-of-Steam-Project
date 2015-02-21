@@ -21,7 +21,7 @@ public class ChargeWeapon : Weapon {
 		Inputs ();
 	}
 	void Inputs(){
-		if (Input.GetButton ("Fire11") && canCharge == true && charge < maxCharge && GetComponentInParent<MechMain> ().energy >= cost) {
+		if (Input.GetButton ("Fire11") && canCharge == true && charge < maxCharge && GetComponentInParent<MechMain> ().Energy >= cost) {
 			isCharging = true;
 		} else {
 			isCharging = false;

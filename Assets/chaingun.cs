@@ -15,13 +15,13 @@ public class chaingun : MonoBehaviour {
 
 		if(parentObject.tag == "mech1" && Input.GetButton("Fire21"))
 		{
-				if(GetComponentInParent<MechMain>().energy > 0)
-				{
+			if(GetComponentInParent<MechMain>().Energy > 0)
+			{
 				if(!audio.isPlaying)
 				{
 					audio.PlayOneShot(chainGun);
 				}
-				GetComponentInParent<MechMain>().energy -=2;
+				GetComponentInParent<MechMain>().Energy -=2;
 				particleSystem.Emit(1);
 				RaycastHit hit;
 				LayerMask layerMask = 1 << 2;
@@ -32,7 +32,7 @@ public class chaingun : MonoBehaviour {
 					if(hit.collider.tag == "mech2")
 					{
 						Debug.Log("mech2 hit");
-						hit.collider.gameObject.GetComponentInParent<MechMain>().health -= 0.5f;
+						hit.collider.gameObject.GetComponentInParent<MechMain>().Health -= 0.5f;
 					}
 				}
 			}
@@ -41,13 +41,13 @@ public class chaingun : MonoBehaviour {
 
 		if(parentObject.tag == "mech2" && Input.GetButton("Fire22"))
 		{
-			if(GetComponentInParent<MechMain>().energy > 0)
+			if(GetComponentInParent<MechMain>().Energy > 0)
 			{
 				if(!audio.isPlaying)
 				{
 					audio.PlayOneShot(chainGun);
 				}
-				GetComponentInParent<MechMain>().energy -=2;
+				GetComponentInParent<MechMain>().Energy -=2;
 				particleSystem.Emit(1);
 				RaycastHit hit;
 				LayerMask layerMask = 1 << 2;
@@ -58,7 +58,7 @@ public class chaingun : MonoBehaviour {
 					if(hit.collider.tag == "mech1")
 					{
 						Debug.Log("mech1 hit");
-						hit.collider.gameObject.GetComponentInParent<MechMain>().health -= 0.5f;
+						hit.collider.gameObject.GetComponentInParent<MechMain>().Health -= 0.5f;
 					}
 				}
 			}
