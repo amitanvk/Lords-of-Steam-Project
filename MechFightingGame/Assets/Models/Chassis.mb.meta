@@ -166,9 +166,6 @@ ModelImporter:
     100320: transform97
     100322: transform98
     100324: transform99
-    100326: group8
-    100328: pasted__pPipe2
-    100330: pPipe2
     400000: //RootNode
     400002: group
     400004: group1
@@ -332,18 +329,9 @@ ModelImporter:
     400320: transform97
     400322: transform98
     400324: transform99
-    400326: group8
-    400328: pasted__pPipe2
-    400330: pPipe2
     2300000: polySurface73
-    2300002: pasted__pPipe2
-    2300004: pPipe2
     3300000: polySurface73
-    3300002: pasted__pPipe2
-    3300004: pPipe2
     4300000: polySurface73
-    4300002: pPipe2
-    4300004: pasted__pPipe2
     7400000: Take 001
     9500000: //RootNode
   materials:
