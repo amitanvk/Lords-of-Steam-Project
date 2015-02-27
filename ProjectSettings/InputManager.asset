@@ -346,7 +346,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: f
     altNegativeButton: 
     altPositiveButton: joystick 1 button 0
     gravity: 1000
@@ -359,6 +359,38 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
     m_Name: M2Jump
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: joystick 2 button 0
+    gravity: 1000
+    dead: 1
+    sensitivity: 1000
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: MenuLeft
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: joystick 2 button 0
+    gravity: 1000
+    dead: 1
+    sensitivity: 1000
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 2
+  - serializedVersion: 3
+    m_Name: MenuRight
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
