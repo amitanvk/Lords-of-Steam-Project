@@ -76,6 +76,7 @@ public class MechMain : MonoBehaviour {
 	private bool dashOn;
 	private bool overHeat;
 	private bool jumping;
+	public bool isFiring;
 
 	// Use this for initialization
 	void Start () {
@@ -160,7 +161,7 @@ public class MechMain : MonoBehaviour {
 
 	void Regen()
 	{
-		if (!dashOn && !jumping && energy < energyMax)
+		if (!isFiring && !dashOn && !jumping && energy < energyMax)
 		{
 			energy += energyRegen;
 		}
