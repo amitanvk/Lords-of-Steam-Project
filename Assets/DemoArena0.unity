@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &33180649
 GameObject:
@@ -1602,7 +1601,7 @@ GameObject:
   - 4: {fileID: 238860823}
   m_Layer: 0
   m_Name: Left Weapon Attach Point
-  m_TagString: Untagged
+  m_TagString: mech2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2586,7 +2585,7 @@ GameObject:
   - 199: {fileID: 639874637}
   m_Layer: 0
   m_Name: Steam
-  m_TagString: Untagged
+  m_TagString: mech2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3962,8 +3961,8 @@ GameObject:
   - 65: {fileID: 682112149}
   - 82: {fileID: 682112148}
   m_Layer: 0
-  m_Name: Mech
-  m_TagString: mech1
+  m_Name: Mech 2
+  m_TagString: mech2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4083,7 +4082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steam: {fileID: 8300000, guid: 98c78d8ea66b2b8419eb316396d804df, type: 3}
-  enemyMech: {fileID: 0}
+  enemyMech: {fileID: 1011937612}
   healthMeter: {fileID: 876288264}
   energyMeter: {fileID: 1043885865}
   healthBar: {fileID: 876288265}
@@ -4098,11 +4097,16 @@ MonoBehaviour:
   hoverForce: 0
   rotationSpeed: 40
   jumpForce: 100
-  Vertical: Vertical1
-  Horizontal: Horizontal1
-  dash: Dash1
-  locker: Lock1
-  jump: Jump1
+  Vertical: M2Vertical
+  Horizontal: M2Horizontal
+  dash: M2Dash
+  locker: M2Lock
+  jump: M2Jump
+  isFiring: 0
+  leftWeaponAttachPoint: {fileID: 238860823}
+  rightWeaponAttachPoint: {fileID: 861886792}
+  leftWeaponPrefab: {fileID: 165410, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
+  rightWeaponPrefab: {fileID: 194674, guid: 20ecf93926acd6248abc2aa64521a9e2, type: 2}
 --- !u!1 &708816205
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,7 +4166,7 @@ GameObject:
   - 23: {fileID: 709532131}
   m_Layer: 0
   m_Name: polySurface73
-  m_TagString: Untagged
+  m_TagString: mech2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5577,7 +5581,7 @@ GameObject:
   - 4: {fileID: 861886792}
   m_Layer: 0
   m_Name: Right Weapon Attach Point
-  m_TagString: Untagged
+  m_TagString: mech2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6176,7 +6180,7 @@ GameObject:
   - 65: {fileID: 1011937616}
   - 82: {fileID: 1011937617}
   m_Layer: 0
-  m_Name: Mech
+  m_Name: 'Mech 1 '
   m_TagString: mech1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6209,7 +6213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steam: {fileID: 8300000, guid: 98c78d8ea66b2b8419eb316396d804df, type: 3}
-  enemyMech: {fileID: 0}
+  enemyMech: {fileID: 682112146}
   healthMeter: {fileID: 432373926}
   energyMeter: {fileID: 1248894855}
   healthBar: {fileID: 927525158}
@@ -6224,11 +6228,16 @@ MonoBehaviour:
   hoverForce: 0
   rotationSpeed: 40
   jumpForce: 100
-  Vertical: Vertical1
-  Horizontal: Horizontal1
-  dash: Dash1
-  locker: Lock1
-  jump: Jump1
+  Vertical: M1Vertical
+  Horizontal: M1Horizontal
+  dash: M1Dash
+  locker: M1Lock
+  jump: M1Jump
+  isFiring: 0
+  leftWeaponAttachPoint: {fileID: 466820191}
+  rightWeaponAttachPoint: {fileID: 628481566}
+  leftWeaponPrefab: {fileID: 194674, guid: 20ecf93926acd6248abc2aa64521a9e2, type: 2}
+  rightWeaponPrefab: {fileID: 165410, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
 --- !u!54 &1011937615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6741,7 +6750,7 @@ GameObject:
   - 81: {fileID: 1092215696}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: mech2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7503,7 +7512,7 @@ Prefab:
     - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
       propertyPath: enemyMech
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 682112146}
     - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
       propertyPath: healthMeter
       value: 
@@ -7528,6 +7537,46 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: Vertical
+      value: M1Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 176448, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_Name
+      value: 'Mech 1 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: Horizontal
+      value: M1Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: dash
+      value: M1Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: locker
+      value: M1Lock
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: jump
+      value: M1Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: rightWeaponAttachPoint
+      value: 
+      objectReference: {fileID: 628481566}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: leftWeaponAttachPoint
+      value: 
+      objectReference: {fileID: 466820191}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: leftWeaponPrefab
+      value: 
+      objectReference: {fileID: 194674, guid: 20ecf93926acd6248abc2aa64521a9e2, type: 2}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: rightWeaponPrefab
+      value: 
+      objectReference: {fileID: 165410, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
   m_RootGameObject: {fileID: 1011937612}
@@ -7840,7 +7889,7 @@ GameObject:
   - 65: {fileID: 1482205490}
   m_Layer: 0
   m_Name: Chassis
-  m_TagString: mech1
+  m_TagString: mech2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8537,6 +8586,78 @@ Prefab:
       propertyPath: energyMeter
       value: 
       objectReference: {fileID: 1043885865}
+    - target: {fileID: 176448, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_TagString
+      value: mech2
+      objectReference: {fileID: 0}
+    - target: {fileID: 176460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_TagString
+      value: mech2
+      objectReference: {fileID: 0}
+    - target: {fileID: 176452, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_TagString
+      value: mech2
+      objectReference: {fileID: 0}
+    - target: {fileID: 176456, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_TagString
+      value: mech2
+      objectReference: {fileID: 0}
+    - target: {fileID: 176458, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_TagString
+      value: mech2
+      objectReference: {fileID: 0}
+    - target: {fileID: 176454, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_TagString
+      value: mech2
+      objectReference: {fileID: 0}
+    - target: {fileID: 176450, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_TagString
+      value: mech2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: enemyMech
+      value: 
+      objectReference: {fileID: 1011937612}
+    - target: {fileID: 176448, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_Name
+      value: Mech 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: Vertical
+      value: M2Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: Horizontal
+      value: M2Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: dash
+      value: M2Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: locker
+      value: M2Lock
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: jump
+      value: M2Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: leftWeaponAttachPoint
+      value: 
+      objectReference: {fileID: 238860823}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: rightWeaponAttachPoint
+      value: 
+      objectReference: {fileID: 861886792}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: leftWeaponPrefab
+      value: 
+      objectReference: {fileID: 165410, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: rightWeaponPrefab
+      value: 
+      objectReference: {fileID: 194674, guid: 20ecf93926acd6248abc2aa64521a9e2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
   m_RootGameObject: {fileID: 682112146}

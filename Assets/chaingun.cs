@@ -7,7 +7,7 @@ public class chaingun : MonoBehaviour {
 	public GameObject parentObject;
 	public AudioClip chainGun;
 	void Start () {
-	
+		parentObject = GetComponentInParent<MechMain>().gameObject;
 	}
 	
 	// Update is called once per frame

@@ -78,6 +78,16 @@ public class MechMain : MonoBehaviour {
 	private bool jumping;
 	public bool isFiring;
 
+	[SerializeField]
+	private Transform leftWeaponAttachPoint;
+	[SerializeField]
+	private Transform rightWeaponAttachPoint;
+
+	[SerializeField]
+	private GameObject leftWeaponPrefab;
+	[SerializeField]
+	private GameObject rightWeaponPrefab;
+
 	// Use this for initialization
 	void Start () {
 		health = 100;
@@ -90,6 +100,19 @@ public class MechMain : MonoBehaviour {
 		energy = energyMax;
 
 		defaultForce = moveForce;
+
+		Attach (leftWeaponPrefab, leftWeaponAttachPoint);
+		Attach (rightWeaponPrefab, rightWeaponAttachPoint);
+
+	}
+
+	GameObject Attach(GameObject prefab, Transform location) {
+		GameObject instance = (GameObject)Instantiate (prefab);
+		instance.transform.parent = location;
+		instance.transform.localScale = Vector3.one;
+		instance.transform.localPosition = Vector3.zero;
+		instance.transform.localRotation = Quaternion.identity;
+		return instance;
 	}
 	
 	// Update is called once per frame
