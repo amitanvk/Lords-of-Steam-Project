@@ -7,6 +7,7 @@ public class testShotgun : MonoBehaviour {
 	public GameObject parentObject;
 	ParticleSystem particle;
 	public AudioClip shotgun;
+	public string fireButton;
 	// Use this for initialization
 	void Start () {
 		active = false;
@@ -15,32 +16,18 @@ public class testShotgun : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (parentObject.tag == "mech1") 
-		{
 
-			if (Input.GetButtonDown ("Fire11") && !active && GetComponentInParent<MechMain>().Energy > 10) {
-				if(!audio.isPlaying)
-				{
-					audio.PlayOneShot(shotgun);
-				}
-				particle.Emit (10);
-				GetComponentInParent<MechMain>().Energy -=10;
-				StartCoroutine (fire ());
+
+		if (Input.GetButtonDown (fireButton) && !active && GetComponentInParent<MechMain>().Energy > 10) {
+			if(!audio.isPlaying)
+			{
+				audio.PlayOneShot(shotgun);
 			}
+			particle.Emit (10);
+			GetComponentInParent<MechMain>().Energy -=10;
+			StartCoroutine (fire ());
 		}
-		if (parentObject.tag == "mech2") 
-		{
-			
-			if (Input.GetButtonDown ("Fire12") && !active && GetComponentInParent<MechMain>().Energy > 10) {
-				if(!audio.isPlaying)
-				{
-					audio.PlayOneShot(shotgun);
-				}
-				particle.Emit (10);
-				GetComponentInParent<MechMain>().Energy -=10;
-				StartCoroutine (fire ());
-			}
-		}
+
 	}
 	IEnumerator fire()
 	{

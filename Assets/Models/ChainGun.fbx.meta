@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: 50a06bc80a559ca4693ddc9e674ed9b6
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: group10
+    100004: group11
+    100006: group12
+    100008: group13
+    100010: group14
+    100012: group15
+    100014: group16
+    100016: group17
+    100018: group18
+    100020: group8
+    100022: group9
+    100024: pasted__group11
+    100026: pasted__group8
+    100028: pasted__pasted__group8
+    100030: pasted__pasted__pasted__pCylinder8
+    100032: pasted__pasted__pCylinder8
+    100034: pasted__pCylinder10
+    100036: pasted__pCylinder7
+    100038: pasted__pCylinder7 1
+    100040: pasted__pCylinder7 2
+    100042: pasted__pCylinder7 3
+    100044: pasted__pCylinder7 4
+    100046: pasted__pCylinder8
+    100048: pasted__pCylinder8 1
+    100050: pasted__pCylinder8 2
+    100052: pasted__pCylinder9
+    100054: pCube7
+    100056: pCube8
+    100058: pCylinder7
+    100060: pCylinder8
+    100062: polySurface30
+    100064: polySurface31
+    100066: transform51
+    100068: transform52
+    100070: transform53
+    100072: transform54
+    100074: transform55
+    100076: transform56
+    100078: transform57
+    100080: transform58
+    100082: transform59
+    100084: transform60
+    100086: transform61
+    100088: transform62
+    100090: transform63
+    100092: transform64
+    100094: transform65
+    100096: transform66
+    100098: transform67
+    400000: //RootNode
+    400002: group10
+    400004: group11
+    400006: group12
+    400008: group13
+    400010: group14
+    400012: group15
+    400014: group16
+    400016: group17
+    400018: group18
+    400020: group8
+    400022: group9
+    400024: pasted__group11
+    400026: pasted__group8
+    400028: pasted__pasted__group8
+    400030: pasted__pasted__pasted__pCylinder8
+    400032: pasted__pasted__pCylinder8
+    400034: pasted__pCylinder10
+    400036: pasted__pCylinder7
+    400038: pasted__pCylinder7 1
+    400040: pasted__pCylinder7 2
+    400042: pasted__pCylinder7 3
+    400044: pasted__pCylinder7 4
+    400046: pasted__pCylinder8
+    400048: pasted__pCylinder8 1
+    400050: pasted__pCylinder8 2
+    400052: pasted__pCylinder9
+    400054: pCube7
+    400056: pCube8
+    400058: pCylinder7
+    400060: pCylinder8
+    400062: polySurface30
+    400064: polySurface31
+    400066: transform51
+    400068: transform52
+    400070: transform53
+    400072: transform54
+    400074: transform55
+    400076: transform56
+    400078: transform57
+    400080: transform58
+    400082: transform59
+    400084: transform60
+    400086: transform61
+    400088: transform62
+    400090: transform63
+    400092: transform64
+    400094: transform65
+    400096: transform66
+    400098: transform67
+    2300000: polySurface31
+    3300000: polySurface31
+    4300000: polySurface31
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

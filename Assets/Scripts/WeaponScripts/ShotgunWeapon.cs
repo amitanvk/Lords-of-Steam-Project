@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AutoWeapon : Weapon {
+public class ShotgunWeapon : Weapon {
 	public float rof; //rate of fire (how many seconds between each bullet)
 	public int magSize; // the most bullets that can be shot before a pause
 	protected int bNum; //remembers how many bullets we have
@@ -11,7 +11,9 @@ public class AutoWeapon : Weapon {
 	protected bool canFire = true;
 	protected float counter = 0; // used with rof (rate of fire)
 	public float vel; // the velocity
-	public string fireButton;
+	public Transform[] spawnArray;
+	public float[] scatterx;
+	public float[] scattery;
 	// Use this for initialization
 	void Start () {
 		bNum = magSize;
@@ -23,7 +25,7 @@ public class AutoWeapon : Weapon {
 		Inputs();
 	}
 	void Inputs(){
-		if (Input.GetButton (fireButton) && GetComponentInParent<MechMain> ().Energy >= enCost && canFire == true) {
+		if (Input.GetButtonDown (fireButton) && GetComponentInParent<MechMain> ().Energy >= enCost && canFire == true) {
 			isFiring = true;
 			GetComponentInParent<MechMain> ().isFiring = isFiring;
 			Debug.Log("Firing");
@@ -32,14 +34,14 @@ public class AutoWeapon : Weapon {
 		}
 		GetComponentInParent<MechMain> ().isFiring = isFiring;
 		if (isFiring == true) {
-			counter += Time.deltaTime;
-			if (rof < counter) {
+			for(int i = 0; i < spawnArray.Length; i++)
+			{
 				GameObject clone;
-				clone = Instantiate (bullet, spawn.position, spawn.rotation)as GameObject;
+				clone = Instantiate (bullet, spawnArray[i].position, spawnArray[i].rotation)as GameObject;
 				clone.SendMessage("Damage", damage);
 				clone.rigidbody.AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
-				clone.rigidbody.AddForce((clone.transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
-				clone.rigidbody.AddForce((clone.transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);
+				clone.rigidbody.AddForce((clone.transform.right * scatterx[i] * inaccuracy), ForceMode.Acceleration);
+				clone.rigidbody.AddForce((clone.transform.up * scattery[i]  * inaccuracy), ForceMode.Acceleration);
 				GetComponentInParent<MechMain> ().Energy -= enCost;
 				bNum--;
 				counter = 0;
