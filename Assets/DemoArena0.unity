@@ -6236,7 +6236,7 @@ MonoBehaviour:
   isFiring: 0
   leftWeaponAttachPoint: {fileID: 466820191}
   rightWeaponAttachPoint: {fileID: 628481566}
-  leftWeaponPrefab: {fileID: 194674, guid: 20ecf93926acd6248abc2aa64521a9e2, type: 2}
+  leftWeaponPrefab: {fileID: 165410, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
   rightWeaponPrefab: {fileID: 165410, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
 --- !u!54 &1011937615
 Rigidbody:
@@ -7572,7 +7572,7 @@ Prefab:
     - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
       propertyPath: leftWeaponPrefab
       value: 
-      objectReference: {fileID: 194674, guid: 20ecf93926acd6248abc2aa64521a9e2, type: 2}
+      objectReference: {fileID: 165410, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
     - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
       propertyPath: rightWeaponPrefab
       value: 

@@ -101,15 +101,16 @@ public class MechMain : MonoBehaviour {
 
 		defaultForce = moveForce;
 
-		Attach (leftWeaponPrefab, leftWeaponAttachPoint);
-		Attach (rightWeaponPrefab, rightWeaponAttachPoint);
+		Attach (leftWeaponPrefab, leftWeaponAttachPoint,-1);
+		Attach (rightWeaponPrefab, rightWeaponAttachPoint,1);
 
 	}
 
-	GameObject Attach(GameObject prefab, Transform location) {
+	GameObject Attach(GameObject prefab, Transform location, float dir) {
 		GameObject instance = (GameObject)Instantiate (prefab);
 		instance.transform.parent = location;
-		instance.transform.localScale = Vector3.one;
+		Vector3 temp = new Vector3 (dir,1f,1f);
+		instance.transform.localScale = temp;
 		instance.transform.localPosition = Vector3.zero;
 		instance.transform.localRotation = Quaternion.identity;
 		return instance;
