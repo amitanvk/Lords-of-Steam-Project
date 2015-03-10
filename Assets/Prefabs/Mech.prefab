@@ -193,7 +193,7 @@ Transform:
   m_GameObject: {fileID: 176458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.23999977, y: 11.3299999, z: -4.5}
-  m_LocalScale: {x: 1.79350698, y: 1.79350698, z: 1.79350698}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476450}
   m_RootOrder: 0
@@ -205,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 176460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.23999834, y: 11.3299999, z: -4.50000286}
-  m_LocalScale: {x: 1.79350698, y: 1.79350698, z: 1.79350698}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476450}
   m_RootOrder: 1
@@ -425,11 +425,18 @@ MonoBehaviour:
   hoverForce: 0
   rotationSpeed: 40
   jumpForce: 100
-  Vertical: Vertical1
-  Horizontal: Horizontal1
-  dash: Dash1
-  locker: Lock1
-  jump: Jump1
+  Vertical: M1Vertical
+  Horizontal: M1Horizontal
+  dash: M1Dash
+  locker: M1Lock
+  jump: M1Jump
+  FireLeft: M1FireLeft
+  FireRight: M1FireRight
+  isFiring: 0
+  leftWeaponAttachPoint: {fileID: 476460}
+  rightWeaponAttachPoint: {fileID: 476458}
+  leftWeaponPrefab: {fileID: 11451266, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
+  rightWeaponPrefab: {fileID: 11451266, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
 --- !u!124 &12476460
 Behaviour:
   m_ObjectHideFlags: 1

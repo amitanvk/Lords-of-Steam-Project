@@ -7,7 +7,6 @@ public class ShotgunWeapon : Weapon {
 	protected int bNum; //remembers how many bullets we have
 	public float reload = 0.3f; // time inbetween firing
 	public float inaccuracy = 5.0f; //how inaccurate the weapon is
-	protected bool isFiring = false;
 	protected bool canFire = true;
 	protected float counter = 0; // used with rof (rate of fire)
 	public float vel; // the velocity
@@ -19,20 +18,10 @@ public class ShotgunWeapon : Weapon {
 		bNum = magSize;
 		counter = Time.deltaTime;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		Inputs();
-	}
-	void Inputs(){
-		if (Input.GetButtonDown (fireButton) && GetComponentInParent<MechMain> ().Energy >= enCost && canFire == true) {
-			isFiring = true;
-			GetComponentInParent<MechMain> ().isFiring = isFiring;
-			Debug.Log("Firing");
-		} else {
-			isFiring = false;
-		}
-		GetComponentInParent<MechMain> ().isFiring = isFiring;
+
+	public override void fire()
+	{
+
 		if (isFiring == true) {
 			for(int i = 0; i < spawnArray.Length; i++)
 			{
@@ -42,7 +31,7 @@ public class ShotgunWeapon : Weapon {
 				clone.rigidbody.AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
 				clone.rigidbody.AddForce((clone.transform.right * scatterx[i] * inaccuracy), ForceMode.Acceleration);
 				clone.rigidbody.AddForce((clone.transform.up * scattery[i]  * inaccuracy), ForceMode.Acceleration);
-				GetComponentInParent<MechMain> ().Energy -= enCost;
+				Parent.Energy -= enCost;
 				bNum--;
 				counter = 0;
 				if (bNum <= 0 || !isFiring) {

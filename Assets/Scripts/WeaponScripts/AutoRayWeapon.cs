@@ -13,7 +13,7 @@ public class AutoRayWeapon : AutoWeapon {
 		Inputs();
 	}
 	void Inputs(){
-		if (Input.GetButton ("Fire11") && GetComponentInParent<MechMain> ().Energy >= enCost && canFire == true) {
+		if (Input.GetButton ("Fire11") && GetComponentInParent<MechMain> ().Energy >= enCost) {
 				isFiring = true;
 		} else {
 				isFiring = false;

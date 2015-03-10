@@ -20,6 +20,11 @@ public class ChargeWeapon : Weapon {
 	{
 		Inputs ();
 	}
+
+	public override void fire()
+	{
+
+	}
 	void Inputs(){
 		if (Input.GetButton ("Fire11") && canCharge == true && charge < maxCharge && GetComponentInParent<MechMain> ().Energy >= cost) {
 			isCharging = true;

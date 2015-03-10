@@ -3,17 +3,11 @@ using System.Collections;
 
 public class MechMain : MonoBehaviour {
 
-	[SerializeField]
-	private AudioClip steam;
-	
+
 	[SerializeField]
 	private GameObject enemyMech;
-	
-	[SerializeField]
-	private GUIText healthMeter;
-	[SerializeField]
-	private GUIText energyMeter;
-	
+
+
 	[SerializeField]
 	private Transform healthBar;
 	[SerializeField]
@@ -71,12 +65,17 @@ public class MechMain : MonoBehaviour {
 	private string locker;
 	[SerializeField]
 	private string jump;
+	[SerializeField]
+	private string FireLeft;
+	[SerializeField]
+	private string FireRight;
 
 	private bool lockOn;
 	private bool dashOn;
 	private bool overHeat;
 	private bool jumping;
-	public bool isFiring;
+	private bool leftFiring;
+	private bool rightFiring;
 
 	[SerializeField]
 	private Transform leftWeaponAttachPoint;
@@ -84,9 +83,12 @@ public class MechMain : MonoBehaviour {
 	private Transform rightWeaponAttachPoint;
 
 	[SerializeField]
-	private GameObject leftWeaponPrefab;
+	private Weapon leftWeaponPrefab;
 	[SerializeField]
-	private GameObject rightWeaponPrefab;
+	private Weapon rightWeaponPrefab;
+
+	private Weapon leftWeapon;
+	private Weapon rightWeapon;
 
 	// Use this for initialization
 	void Start () {
@@ -101,19 +103,28 @@ public class MechMain : MonoBehaviour {
 
 		defaultForce = moveForce;
 
-		Attach (leftWeaponPrefab, leftWeaponAttachPoint,-1);
-		Attach (rightWeaponPrefab, rightWeaponAttachPoint,1);
+		leftWeapon = (Weapon) Instantiate (leftWeaponPrefab);
+		rightWeapon = (Weapon) Instantiate (rightWeaponPrefab);
+
+		leftWeapon.Parent = this;
+		rightWeapon.Parent = this;
+
+		Attach (leftWeapon, leftWeaponAttachPoint,-1);
+		Attach (rightWeapon, rightWeaponAttachPoint,1);
 
 	}
 
-	GameObject Attach(GameObject prefab, Transform location, float dir) {
-		GameObject instance = (GameObject)Instantiate (prefab);
-		instance.transform.parent = location;
+	void Attach(Weapon prefab, Transform location, float dir) {
+		Transform weaponAttachPoint = prefab.attachPoint;
+		Transform prefabTransform = prefab.transform;
+		prefabTransform.parent = null;
+		weaponAttachPoint.parent = null;
+		prefabTransform.parent = weaponAttachPoint;
+		weaponAttachPoint.parent = location;
 		Vector3 temp = new Vector3 (dir,1f,1f);
-		instance.transform.localScale = temp;
-		instance.transform.localPosition = Vector3.zero;
-		instance.transform.localRotation = Quaternion.identity;
-		return instance;
+		weaponAttachPoint.localScale = temp;
+		weaponAttachPoint.localPosition = Vector3.zero;
+		weaponAttachPoint.localRotation = Quaternion.identity;
 	}
 	
 	// Update is called once per frame
@@ -145,25 +156,43 @@ public class MechMain : MonoBehaviour {
 		if(Input.GetButton(dash) && energy > 0.0f) {
 			moveForce = dashForce;
 			dashOn = true;
-			if(!audio.isPlaying)
-			{
-				audio.PlayOneShot(steam);
-			}
+		
 			energy -= energyRegen;
 		} else {
 			dashOn = false;
 			moveForce = defaultForce;
 		}
+		//WEAPON FIRING
+		if (Input.GetButton (FireLeft) && energy >= leftWeapon.enCost) 
+		{
+			leftFiring = true;
+			leftWeapon.isFiring = true;
+			leftWeapon.fire();
+		} 
+		else 
+		{
+			leftFiring = false;
+			leftWeapon.isFiring = false;
+		}
+		if (Input.GetButton (FireRight) && energy > rightWeapon.enCost) 
+		{
+			rightFiring = true;
+			rightWeapon.isFiring = true;
+			rightWeapon.fire ();
+		} 
+		else 
+		{
+			rightFiring = false;
+			rightWeapon.isFiring = false;
 
+		}
+		// END WEAPON FIRING
 		if (Input.GetButton (jump) && energy > 0.0f) 
 		{
 			jumping = true;
 			rigidbody.AddForce (transform.up * jumpForce, ForceMode.Acceleration);
 			energy -= energyRegen;
-			if(!audio.isPlaying)
-			{
-				audio.PlayOneShot(steam);
-			}
+
 		} 
 		else 
 		{
@@ -185,7 +214,7 @@ public class MechMain : MonoBehaviour {
 
 	void Regen()
 	{
-		if (!isFiring && !dashOn && !jumping && energy < energyMax)
+		if (!(leftFiring || rightFiring) && !dashOn && !jumping && energy < energyMax)
 		{
 			energy += energyRegen;
 		}
@@ -207,8 +236,6 @@ public class MechMain : MonoBehaviour {
 		Vector3 tempEnergy = energyBar.localScale;
 		tempHealth.x = (health / healthMax) * scaling;
 		tempEnergy.x = (energy / energyMax) * scaling;
-		healthMeter.text = "Health: " + health;
-		energyMeter.text = "Energy: " + energyDisplay;
 		energyBar.localScale = tempEnergy;
 		healthBar.localScale = tempHealth;
 	}
