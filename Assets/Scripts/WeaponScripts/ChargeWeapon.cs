@@ -56,8 +56,8 @@ public class ChargeWeapon : Weapon {
 		GameObject clone;
 		clone = Instantiate(bullet, spawn.position, spawn.rotation) as GameObject; // spawn.rotation can be replaced with a Quaternian
 		clone.SendMessage("Damage", dam);
-		clone.rigidbody.AddForce(transform.forward * (((dist * charge * charge) * 30) % 10000), ForceMode.Acceleration);
-		clone.rigidbody.AddForce (transform.up * (charge) * angle, ForceMode.Acceleration);
+		clone.GetComponent<Rigidbody>().AddForce(transform.forward * (((dist * charge * charge) * 30) % 10000), ForceMode.Acceleration);
+		clone.GetComponent<Rigidbody>().AddForce (transform.up * (charge) * angle, ForceMode.Acceleration);
 		canCharge = false;
 		yield return new WaitForSeconds (0.9f);
 		canCharge = true;

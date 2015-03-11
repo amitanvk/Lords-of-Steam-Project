@@ -21,13 +21,13 @@ public class Flamethrower : Weapon {
 	{
 		if (isFiring) 
 		{
-			spawn.particleSystem.Play();
-			smoke.particleSystem.Play();
+			spawn.GetComponent<ParticleSystem>().Play();
+			smoke.GetComponent<ParticleSystem>().Play();
 		} 
 		else 
 		{
-			spawn.particleSystem.Stop();
-			smoke.particleSystem.Stop();
+			spawn.GetComponent<ParticleSystem>().Stop();
+			smoke.GetComponent<ParticleSystem>().Stop();
 		}
 	}
 

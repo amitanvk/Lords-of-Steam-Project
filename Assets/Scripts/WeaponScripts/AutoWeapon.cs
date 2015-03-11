@@ -24,9 +24,9 @@ public class AutoWeapon : Weapon {
 				GameObject clone;
 				clone = Instantiate (bullet, spawn.position, spawn.rotation)as GameObject;
 				clone.SendMessage("Damage", damage);
-				clone.rigidbody.AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
-				clone.rigidbody.AddForce((clone.transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
-				clone.rigidbody.AddForce((clone.transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((clone.transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((clone.transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);
 				Parent.Energy -= enCost;
 				counter = 0;
 			}

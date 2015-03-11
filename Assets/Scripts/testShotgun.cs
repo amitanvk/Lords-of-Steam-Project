@@ -19,9 +19,9 @@ public class testShotgun : MonoBehaviour {
 
 
 		if (Input.GetButtonDown (fireButton) && !active && GetComponentInParent<MechMain>().Energy > 10) {
-			if(!audio.isPlaying)
+			if(!GetComponent<AudioSource>().isPlaying)
 			{
-				audio.PlayOneShot(shotgun);
+				GetComponent<AudioSource>().PlayOneShot(shotgun);
 			}
 			particle.Emit (10);
 			GetComponentInParent<MechMain>().Energy -=10;

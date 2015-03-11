@@ -190,7 +190,7 @@ public class MechMain : MonoBehaviour {
 		if (Input.GetButton (jump) && energy > 0.0f) 
 		{
 			jumping = true;
-			rigidbody.AddForce (transform.up * jumpForce, ForceMode.Acceleration);
+			GetComponent<Rigidbody>().AddForce (transform.up * jumpForce, ForceMode.Acceleration);
 			energy -= energyRegen;
 
 		} 
@@ -201,15 +201,15 @@ public class MechMain : MonoBehaviour {
 
 		if(lockOn)
 		{
-			rigidbody.AddForce (Input.GetAxisRaw (Horizontal) * transform.right * moveForce,ForceMode.Acceleration);
+			GetComponent<Rigidbody>().AddForce (Input.GetAxisRaw (Horizontal) * transform.right * moveForce,ForceMode.Acceleration);
 		}
 		else
 		{
 			yaw = Input.GetAxisRaw(Horizontal) * (Time.fixedDeltaTime * rotationSpeed);
 			AddRot.eulerAngles = new Vector3(0, yaw,0);
 		}
-		rigidbody.rotation *= AddRot;
-		rigidbody.AddForce (Input.GetAxisRaw (Vertical) * transform.forward * moveForce,ForceMode.Acceleration);
+		GetComponent<Rigidbody>().rotation *= AddRot;
+		GetComponent<Rigidbody>().AddForce (Input.GetAxisRaw (Vertical) * transform.forward * moveForce,ForceMode.Acceleration);
 	}
 
 	void Regen()

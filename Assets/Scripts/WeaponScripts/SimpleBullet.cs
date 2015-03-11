@@ -9,6 +9,7 @@ public class SimpleBullet : MonoBehaviour {
 	public float lifeSpan = 10.0f;
 	public float damage = 5.0f;
 	public float fallRate = .1f; //the bullet's own gravity
+	public bool active;
 
 	void Awake(){
 		//active = true;
@@ -29,7 +30,7 @@ public class SimpleBullet : MonoBehaviour {
 	}
 	void FixedUpdate(){
 		if (fallRate > 0 || fallRate < 0) {
-			gameObject.rigidbody.AddForce (-Vector3.up * fallRate);
+			gameObject.GetComponent<Rigidbody>().AddForce (-Vector3.up * fallRate);
 		}
 	}
 	void Damage(float dam){

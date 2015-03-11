@@ -28,9 +28,9 @@ public class ShotgunWeapon : Weapon {
 				GameObject clone;
 				clone = Instantiate (bullet, spawnArray[i].position, spawnArray[i].rotation)as GameObject;
 				clone.SendMessage("Damage", damage);
-				clone.rigidbody.AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
-				clone.rigidbody.AddForce((clone.transform.right * scatterx[i] * inaccuracy), ForceMode.Acceleration);
-				clone.rigidbody.AddForce((clone.transform.up * scattery[i]  * inaccuracy), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((clone.transform.right * scatterx[i] * inaccuracy), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((clone.transform.up * scattery[i]  * inaccuracy), ForceMode.Acceleration);
 				Parent.Energy -= enCost;
 				bNum--;
 				counter = 0;
