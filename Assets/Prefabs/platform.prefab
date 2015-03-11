@@ -11,9 +11,9 @@ GameObject:
   - 33: {fileID: 3399410}
   - 23: {fileID: 2399410}
   - 64: {fileID: 6499410}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: platform
-  m_TagString: Untagged
+  m_TagString: StageGeometry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199410}
   m_LocalRotation: {x: -.707106888, y: 0, z: 0, w: .707106769}
-  m_LocalPosition: {x: 45.7130013, y: 101.231003, z: -39.4570007}
-  m_LocalScale: {x: 300, y: 300, z: 100}
+  m_LocalPosition: {x: -164.910004, y: -27.1200027, z: -32.3100052}
+  m_LocalScale: {x: 3000, y: 3000, z: 2000}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -42,7 +42,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 97eac3d56c4368e49a450e0ed479dc37, type: 2}
+  - {fileID: 2100000, guid: 96c409accf3e662459a1aeb977d3c05f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -56,7 +56,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199410}
-  m_Mesh: {fileID: 4300000, guid: 96940bb8de64b454b933fe1d692ae01f, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 7cd8c2535f70b0b48997e648a1b08196, type: 3}
 --- !u!64 &6499410
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -68,7 +68,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 96940bb8de64b454b933fe1d692ae01f, type: 3}
 --- !u!1001 &100100000
 Prefab:
