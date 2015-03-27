@@ -83,6 +83,11 @@ public class MechMain : MonoBehaviour {
 	private Transform rightWeaponAttachPoint;
 
 	[SerializeField]
+	private string playerPrefsLeftWeapon;
+	[SerializeField]
+	private string playerPrefsRightWeapon;
+
+	[SerializeField]
 	private Weapon leftWeaponPrefab;
 	[SerializeField]
 	private Weapon rightWeaponPrefab;
@@ -103,8 +108,13 @@ public class MechMain : MonoBehaviour {
 
 		defaultForce = moveForce;
 
-		leftWeapon = (Weapon) Instantiate (leftWeaponPrefab);
-		rightWeapon = (Weapon) Instantiate (rightWeaponPrefab);
+		string leftWeaponPath = PlayerPrefs.GetString (playerPrefsLeftWeapon);
+		string rightWeaponPath = PlayerPrefs.GetString (playerPrefsRightWeapon);
+
+
+
+		leftWeapon = (Weapon) Instantiate (Resources.Load(leftWeaponPath));
+		rightWeapon = (Weapon) Instantiate (Resources.Load(rightWeaponPath));
 
 		leftWeapon.Parent = this;
 		rightWeapon.Parent = this;
