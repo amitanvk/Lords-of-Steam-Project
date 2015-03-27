@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &220609948
 Transform:
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.100000001
   point: {fileID: 1074917565}
 --- !u!1001 &297550103
 Prefab:
@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!1001 &419997377
 Prefab:
@@ -545,6 +545,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 19812476, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 19812476, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2076460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 764792195}
+    - target: {fileID: 11476460, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 764792196}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68e368ce9aaf4b04888065d88959978e, type: 2}
   m_IsPrefabParent: 0
@@ -621,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &493903088
 Transform:
@@ -700,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &551186866
 Transform:
@@ -743,7 +763,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 198214, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_Name
@@ -791,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.100000001
   point: {fileID: 1865997550}
 --- !u!1001 &581861841
 Prefab:
@@ -866,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &581861844
 Transform:
@@ -1007,7 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &593491206
 Transform:
@@ -1090,7 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &670658680
 Transform:
@@ -1169,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &678367582
 Transform:
@@ -1248,7 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.100000001
   point: {fileID: 1865997550}
 --- !u!1001 &720415478
 Prefab:
@@ -1323,12 +1343,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &720415481
 Transform:
   m_PrefabParentObject: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
   m_PrefabInternal: {fileID: 720415478}
+--- !u!1001 &764792194
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .159999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .810000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 425368, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &764792195
+Transform:
+  m_PrefabParentObject: {fileID: 492298, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+  m_PrefabInternal: {fileID: 764792194}
+--- !u!4 &764792196
+Transform:
+  m_PrefabParentObject: {fileID: 411560, guid: 965d2ce496b2a2340a7dff9467035968, type: 2}
+  m_PrefabInternal: {fileID: 764792194}
 --- !u!1001 &803511272
 Prefab:
   m_ObjectHideFlags: 0
@@ -1402,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &803511275
 Transform:
@@ -1481,7 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &871377612
 Transform:
@@ -1560,7 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &1012351315
 Transform:
@@ -1603,7 +1673,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 198214, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_Name
@@ -1661,7 +1731,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198214, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_Name
@@ -1697,7 +1767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &1059750661
 Transform:
@@ -1722,7 +1792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!1001 &1076359096
 Prefab:
@@ -1797,7 +1867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &1076359099
 Transform:
@@ -1876,7 +1946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &1139948732
 Transform:
@@ -1929,7 +1999,7 @@ Transform:
   - {fileID: 593491206}
   - {fileID: 1544308766}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1001 &1350672752
 Prefab:
   m_ObjectHideFlags: 0
@@ -2003,7 +2073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &1350672755
 Transform:
@@ -2082,7 +2152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &1408771438
 Transform:
@@ -2207,7 +2277,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
 --- !u!1001 &1498734862
 Prefab:
   m_ObjectHideFlags: 0
@@ -2281,7 +2351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &1498734865
 Transform:
@@ -2300,7 +2370,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 236
+      value: 236.000015
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2324,7 +2394,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198214, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_Name
@@ -2418,7 +2488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &1544308766
 Transform:
@@ -2497,7 +2567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &1573939746
 Transform:
@@ -2522,7 +2592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!1001 &1886345510
 Prefab:
@@ -2597,7 +2667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: -.00999999978
   point: {fileID: 599977335}
 --- !u!4 &1886345513
 Transform:
@@ -2640,7 +2710,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 474444, guid: 7f5de7d8af9d6754692e472ea97c2506, type: 2}
       propertyPath: m_LocalScale.x
@@ -2780,7 +2850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &2058024734
 Transform:
@@ -2859,7 +2929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bbbd7b5e7b7640a98578cb479ef80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: .100000001
+  angle: .00999999978
   point: {fileID: 599977335}
 --- !u!4 &2096198882
 Transform:

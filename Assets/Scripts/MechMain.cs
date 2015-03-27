@@ -76,6 +76,7 @@ public class MechMain : MonoBehaviour {
 	private bool jumping;
 	private bool leftFiring;
 	private bool rightFiring;
+	private bool isControllable;
 
 	[SerializeField]
 	private Transform leftWeaponAttachPoint;
@@ -97,7 +98,7 @@ public class MechMain : MonoBehaviour {
 		lockOn = false;
 		dashOn = false;	
 		overHeat = false;
-
+		isControllable = true;
 		health = healthMax;
 		energy = energyMax;
 
@@ -134,8 +135,11 @@ public class MechMain : MonoBehaviour {
 
 	void FixedUpdate() {
 		Regen ();
-		Control ();
+		if(isControllable)
+			Control ();
 		State ();
+		if (Input.GetKeyDown(KeyCode.P))
+						health = health - health;
 	}
 
 
@@ -201,7 +205,7 @@ public class MechMain : MonoBehaviour {
 
 		if(lockOn)
 		{
-			GetComponent<Rigidbody>().AddForce (Input.GetAxisRaw (Horizontal) * transform.right * moveForce,ForceMode.Acceleration);
+			//GetComponent<Rigidbody>().AddForce (Input.GetAxisRaw (Horizontal) * transform.right * moveForce,ForceMode.Acceleration);
 		}
 		else
 		{
@@ -223,21 +227,27 @@ public class MechMain : MonoBehaviour {
 	void State()
 	{
 		if (health <= 0) {
-			Destroy(gameObject);
+			//Destroy(gameObject);
+			if(isControllable)
+				GetComponent<ParticleSystem>().Emit(1000);
+			isControllable = false;
+
 		}
 	}
 
 	void UpdateGUI()
 	{
-		const float scaling = 1.45f;
-		float healthDisplay = Mathf.Clamp (health, 0f, healthMax);
-		float energyDisplay = Mathf.Clamp (energy, 0f, energyMax);
-		Vector3 tempHealth = healthBar.localScale;
-		Vector3 tempEnergy = energyBar.localScale;
-		tempHealth.x = (health / healthMax) * scaling;
-		tempEnergy.x = (energy / energyMax) * scaling;
-		energyBar.localScale = tempEnergy;
-		healthBar.localScale = tempHealth;
+		if (energyBar != null) {
+						const float scaling = 1.45f;
+						float healthDisplay = Mathf.Clamp (health, 0f, healthMax);
+						float energyDisplay = Mathf.Clamp (energy, 0f, energyMax);
+						Vector3 tempHealth = healthBar.localScale;
+						Vector3 tempEnergy = energyBar.localScale;
+						tempHealth.x = (health / healthMax) * scaling;
+						tempEnergy.x = (energy / energyMax) * scaling;
+						energyBar.localScale = tempEnergy;
+						healthBar.localScale = tempHealth;
+				}
 	}
 	//TRIGGER METHODS
 	void OnTriggerStay(Collider other)
@@ -246,5 +256,26 @@ public class MechMain : MonoBehaviour {
 		{
 			health -= 0.25f;
 		}
+		if (other.tag == "Platform") {
+			Debug.Log("on platform");
+				}
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.tag == "Platform") {
+			Debug.Log("on platform");
+			transform.parent = collision.gameObject.transform;
+		}
+
+	}
+
+	void OnCollisionExit(Collision collision)
+	{
+		if (collision.gameObject.tag == "Platform") {
+			Debug.Log("off platform");
+			transform.parent = null;
+		}
+		
 	}
 }
