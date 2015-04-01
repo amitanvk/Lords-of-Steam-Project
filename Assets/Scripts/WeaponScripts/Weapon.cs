@@ -22,7 +22,7 @@ public abstract class Weapon : MonoBehaviour {
 	}
 
 
-
+	[RPC]
 	public abstract void fire ();
 
 }

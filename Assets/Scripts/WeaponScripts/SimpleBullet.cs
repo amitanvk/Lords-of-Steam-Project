@@ -49,7 +49,7 @@ public class SimpleBullet : MonoBehaviour {
 			Destroy(gameObject);
 		}
 		if ((other.tag == "Mech")) {
-			Debug.Log("mech1 hit");
+			Debug.Log("Mech hit");
 			other.GetComponentInParent<MechMain>().Health -= damage;
 			Destroy(gameObject);
 		}

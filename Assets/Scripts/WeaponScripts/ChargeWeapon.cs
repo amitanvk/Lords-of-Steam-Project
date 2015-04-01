@@ -51,6 +51,7 @@ public class ChargeWeapon : Weapon {
 			
 		}
 	}
+	[RPC]
 	IEnumerator fire(float charge){
 		float dam = charge * damage;
 		GameObject clone;

@@ -29,4 +29,5 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupTimes
   - OnTriggerStay
+  - fire
   DisableAutoOpenWizard: 0

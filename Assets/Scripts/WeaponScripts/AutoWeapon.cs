@@ -14,7 +14,7 @@ public class AutoWeapon : Weapon {
 	
 	// Update is called once per frame
 
-
+	[RPC]
 	public override void fire()
 	{
 
