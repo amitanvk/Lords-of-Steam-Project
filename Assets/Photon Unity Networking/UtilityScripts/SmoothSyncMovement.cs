@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SmoothSyncMovement : Photon.MonoBehaviour
 {
-    public float SmoothingDelay = 5;
+    public float SmoothingDelay = 2;
     public void Awake()
     {
         if (this.photonView == null || this.photonView.observed != this)

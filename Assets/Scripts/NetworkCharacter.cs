@@ -6,7 +6,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	Vector3 realPosition = Vector3.zero;
 	Quaternion realRotation = Quaternion.identity;
 	bool gotFirstUpdate = false;
-	public float SmoothingDelay = 5;
+	public float SmoothingDelay = 2;
 
 
 	void Start () {
