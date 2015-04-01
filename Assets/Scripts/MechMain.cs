@@ -6,6 +6,7 @@ public class MechMain : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject enemyMech;
+	
 
 
 	[SerializeField]
@@ -21,7 +22,13 @@ public class MechMain : MonoBehaviour {
 	private float healthRegen;
 	[SerializeField]
 	private float energyRegen;
+	[SerializeField]
+	private float hoverCost = 1.5f;
+	[SerializeField]
+	private float dashCost = 1.0f;
+	[SerializeField]
 	private float health;
+	[SerializeField]
 	public float Health {
 		get {
 			return health;
@@ -40,8 +47,14 @@ public class MechMain : MonoBehaviour {
 			energy = value;
 		}
 	}
-
-	
+	[SerializeField]
+	private float enWait = 1.5f;
+	public float EnWait {
+				get {
+						return enWait;
+				}
+	}
+	private float enCount;
 	[SerializeField]
 	private float moveForce;
 	[SerializeField]
@@ -69,11 +82,19 @@ public class MechMain : MonoBehaviour {
 	private string FireLeft;
 	[SerializeField]
 	private string FireRight;
-
+	
 	private bool lockOn;
 	private bool dashOn;
 	private bool overHeat;
 	private bool jumping;
+	public bool Jumping {
+		get {
+			return jumping;
+		}
+	}
+	public float jumpTime = 0.5f;
+	public float jumpCount = 0.0f;
+
 	private bool leftFiring;
 	private bool rightFiring;
 	private bool isControllable;
@@ -95,6 +116,7 @@ public class MechMain : MonoBehaviour {
 	void Start () {
 		health = 100;
 		energy = 1;
+
 		lockOn = false;
 		dashOn = false;	
 		overHeat = false;
@@ -103,6 +125,8 @@ public class MechMain : MonoBehaviour {
 		energy = energyMax;
 
 		defaultForce = moveForce;
+		enCount = enWait;
+
 
 		leftWeapon = (Weapon) Instantiate (leftWeaponPrefab);
 		rightWeapon = (Weapon) Instantiate (rightWeaponPrefab);
@@ -112,6 +136,7 @@ public class MechMain : MonoBehaviour {
 
 		Attach (leftWeapon, leftWeaponAttachPoint,-1);
 		Attach (rightWeapon, rightWeaponAttachPoint,1);
+
 
 	}
 
@@ -131,6 +156,7 @@ public class MechMain : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		UpdateGUI ();
+
 	}
 
 	void FixedUpdate() {
@@ -146,62 +172,85 @@ public class MechMain : MonoBehaviour {
 	// CONTROLLER METHOD 
 	void Control()
 	{
-		Quaternion AddRot = Quaternion.identity;
-		float yaw = 0;
+				Quaternion AddRot = Quaternion.identity;
+				float yaw = 0;
 
-		if(Input.GetButtonDown(locker))
-		{
-			lockOn = !lockOn;
-		}
-		if (lockOn) 
-		{
-			transform.LookAt (enemyMech.transform.position);
-		}
-		if(Input.GetButton(dash) && energy > 0.0f) {
-			moveForce = dashForce;
-			dashOn = true;
+				if (Input.GetButtonDown (locker)) {
+						lockOn = !lockOn;
+				}
+				if (lockOn) {
+						if (enemyMech != null) {
+								transform.LookAt (enemyMech.transform.position);
+						}
+				}
+				if (Input.GetButton (dash)) {
+						dashOn = true;
+
+						if (energy > 0.0f) {
+
+								moveForce = Mathf.Lerp (moveForce, dashForce, 1.0f);
+								energy -= dashCost;
+						} else {
+								moveForce = defaultForce;
+						}
+				} else {
+						dashOn = false;
+						moveForce = defaultForce;
+				}
+				//WEAPON FIRING
+				if (Input.GetButton (FireLeft) && energy >= 0) {
+						leftFiring = true;
+						leftWeapon.isFiring = true;
+						leftWeapon.fire ();
+				} else {
+						leftFiring = false;
+						leftWeapon.isFiring = false;
+				}
+				if (Input.GetButton (FireRight)) {
+						rightFiring = true;
+						if (energy >= 0) {
+								rightWeapon.isFiring = true;
+								rightWeapon.fire ();
+						}
+				} else {
+						rightFiring = false;
+						rightWeapon.isFiring = false;
+
+				}
+				// END WEAPON FIRIN
+				if (Input.GetButton (jump)) {
+				
+				
+						jumping = true;
+						jumpCount += Time.deltaTime * 1.0f;
+						if (energy >= 0.0f) {			
+
+								GetComponent<Rigidbody> ().AddForce (transform.up * Mathf.Lerp (10.0f, jumpForce, 0.8f), ForceMode.Acceleration);
+
+								energy -= hoverCost;
+						}
+						
+				} 
+				else if (jumping==true && jumpCount < jumpTime) {
+
+						jumping = true;
+						GetComponent<Rigidbody> ().AddForce (transform.up * (jumpForce* 1.4f), ForceMode.VelocityChange);
+						energy -= 5;
+						jumping = false;
+				
+				} else {
+						jumpCount = 0;
+						jumping = false;
+				}
+	
+			
 		
-			energy -= energyRegen;
-		} else {
-			dashOn = false;
-			moveForce = defaultForce;
-		}
-		//WEAPON FIRING
-		if (Input.GetButton (FireLeft) && energy >= leftWeapon.enCost) 
-		{
-			leftFiring = true;
-			leftWeapon.isFiring = true;
-			leftWeapon.fire();
-		} 
-		else 
-		{
-			leftFiring = false;
-			leftWeapon.isFiring = false;
-		}
-		if (Input.GetButton (FireRight) && energy > rightWeapon.enCost) 
-		{
-			rightFiring = true;
-			rightWeapon.isFiring = true;
-			rightWeapon.fire ();
-		} 
-		else 
-		{
-			rightFiring = false;
-			rightWeapon.isFiring = false;
+			 
+					
+		
 
-		}
-		// END WEAPON FIRING
-		if (Input.GetButton (jump) && energy > 0.0f) 
-		{
-			jumping = true;
-			GetComponent<Rigidbody>().AddForce (transform.up * jumpForce, ForceMode.Acceleration);
-			energy -= energyRegen;
 
-		} 
-		else 
-		{
-			jumping = false;
-		}
+
 
 		if(lockOn)
 		{
@@ -218,9 +267,40 @@ public class MechMain : MonoBehaviour {
 
 	void Regen()
 	{
-		if (!(leftFiring || rightFiring) && !dashOn && !jumping && energy < energyMax)
-		{
-			energy += energyRegen;
+		float currEn = 0.0f;
+		if (energy <= 0) {
+			if (!(leftFiring || rightFiring) && !dashOn && !jumping) {
+					enWait -= Time.deltaTime;
+					if (enWait < 0) {
+							energy = 1.0f;
+							enWait = enCount;
+		
+					}
+	
+			}
+		} 
+		else if (energy <= -5) {
+			if (!(leftFiring || rightFiring) && !dashOn && !jumping) {
+					enWait -= (Time.deltaTime / 5.0f);
+					if (enWait < 0) {
+							energy = 1.0f;
+							enWait = enCount;
+		
+					}
+	
+			}
+		} 
+		else {
+			if (!(leftFiring || rightFiring) && !dashOn && !jumping && energy < energyMax && energy > 0) {
+				if (energy < 12.0f) {
+					currEn = energyRegen * 1.5f;
+				}
+				else if (energy < 70.0f) {
+					currEn = Mathf.Lerp (energyRegen / 1.1f, energyRegen * 10f, 0.5f);
+				} else
+							currEn = energyRegen;
+					energy += currEn;
+			}
 		}
 	}
 
@@ -234,7 +314,9 @@ public class MechMain : MonoBehaviour {
 
 		}
 	}
-
+	void OnGui(){
+		GUILayout.Label (health + "         " + energy);
+	}
 	void UpdateGUI()
 	{
 		if (energyBar != null) {

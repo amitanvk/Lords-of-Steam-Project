@@ -36,6 +36,7 @@ public class SimpleBullet : MonoBehaviour {
 	void Damage(float dam){
 		this.damage = dam;
 	}
+	[RPC]
 	void OnTriggerStay(Collider other) {
 		if ( other.tag == "mech2") {
 			Debug.Log("mech 2 hit");
@@ -47,7 +48,11 @@ public class SimpleBullet : MonoBehaviour {
 			other.GetComponentInParent<MechMain>().Health -= damage;
 			Destroy(gameObject);
 		}
-
+		if ((other.tag == "Mech")) {
+			Debug.Log("mech1 hit");
+			other.GetComponentInParent<MechMain>().Health -= damage;
+			Destroy(gameObject);
+		}
 		//active = false;
 	}
 }

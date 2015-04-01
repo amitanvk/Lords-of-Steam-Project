@@ -6,6 +6,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	Vector3 realPosition = Vector3.zero;
 	Quaternion realRotation = Quaternion.identity;
 	bool gotFirstUpdate = false;
+	public float SmoothingDelay = 5;
 
 
 	void Start () {
@@ -19,8 +20,8 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 			// Do nothing
 		}
 		else {
-			transform.position = Vector3.Slerp(transform.position, realPosition, 0.1f);
-			transform.rotation = Quaternion.Slerp(transform.rotation, realRotation, 0.1f);
+			transform.position = Vector3.Lerp(transform.position, realPosition, Time.deltaTime * this.SmoothingDelay);
+			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, Time.deltaTime * this.SmoothingDelay);
 		}
 	}
 	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {		

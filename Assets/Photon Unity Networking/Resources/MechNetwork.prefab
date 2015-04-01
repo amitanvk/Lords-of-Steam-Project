@@ -95,7 +95,7 @@ GameObject:
   - 65: {fileID: 6598702}
   m_Layer: 0
   m_Name: Chassis
-  m_TagString: mech1
+  m_TagString: Mech
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,7 +205,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -420.600006, y: 134, z: -117.599998}
+  m_LocalPosition: {x: 150.5, y: 309.299988, z: -91.3000031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498702}
@@ -430,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeed: 70
+  speed: 0
 --- !u!114 &11427724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -441,6 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6561e20b8562d3e4495ed9b1320e14ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SmoothingDelay: 5
 --- !u!114 &11450504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,13 +485,17 @@ MonoBehaviour:
   healthMax: 100
   energyMax: 96.9000015
   healthRegen: 0
-  energyRegen: .5
-  moveForce: 200
-  dashForce: 400
+  energyRegen: .100000001
+  hoverCost: .300000012
+  dashCost: .100000001
+  health: 0
+  enWait: 3
+  moveForce: 100
+  dashForce: 300
   defaultForce: 0
   hoverForce: 0
-  rotationSpeed: 70
-  jumpForce: 100
+  rotationSpeed: 120
+  jumpForce: 50
   Vertical: M1Vertical
   Horizontal: M1Horizontal
   dash: M1Dash
@@ -497,6 +503,8 @@ MonoBehaviour:
   jump: M1Jump
   FireLeft: M1FireLeft
   FireRight: M1FireRight
+  jumpTime: .800000012
+  jumpCount: 0
   leftWeaponAttachPoint: {fileID: 498692}
   rightWeaponAttachPoint: {fileID: 498694}
   leftWeaponPrefab: {fileID: 11451266, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
