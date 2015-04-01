@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Weapon : MonoBehaviour {
+public abstract class Weapon : Photon.MonoBehaviour {
 
 	public float damage;
 	public Transform spawn; // from where we will shoot

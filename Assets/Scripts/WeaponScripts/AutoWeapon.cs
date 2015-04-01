@@ -22,8 +22,8 @@ public class AutoWeapon : Weapon {
 			counter += Time.deltaTime;
 			if (rof < counter) {
 				GameObject clone;
-				clone = Instantiate (bullet, spawn.position, spawn.rotation)as GameObject;
-				clone.SendMessage("Damage", damage);
+				clone = PhotonNetwork.Instantiate (bullet.name, spawn.position, spawn.rotation,0)as GameObject;
+				clone.GetComponent<SimpleBullet>().Damage = damage;
 				clone.GetComponent<Rigidbody>().AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
 				clone.GetComponent<Rigidbody>().AddForce((clone.transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
 				clone.GetComponent<Rigidbody>().AddForce((clone.transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);

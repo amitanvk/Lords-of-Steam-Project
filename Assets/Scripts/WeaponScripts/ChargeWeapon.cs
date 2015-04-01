@@ -55,8 +55,8 @@ public class ChargeWeapon : Weapon {
 	IEnumerator fire(float charge){
 		float dam = charge * damage;
 		GameObject clone;
-		clone = Instantiate(bullet, spawn.position, spawn.rotation) as GameObject; // spawn.rotation can be replaced with a Quaternian
-		clone.SendMessage("Damage", dam);
+		clone = PhotonNetwork.Instantiate(bullet.name, spawn.position, spawn.rotation,0) as GameObject; // spawn.rotation can be replaced with a Quaternian
+		clone.GetComponent<SimpleBullet>().Damage = damage;
 		clone.GetComponent<Rigidbody>().AddForce(transform.forward * (((dist * charge * charge) * 30) % 10000), ForceMode.Acceleration);
 		clone.GetComponent<Rigidbody>().AddForce (transform.up * (charge) * angle, ForceMode.Acceleration);
 		canCharge = false;

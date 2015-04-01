@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MechMain : MonoBehaviour {
+public class MechMain : Photon.MonoBehaviour {
 
 
 	[SerializeField]

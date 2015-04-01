@@ -10,6 +10,15 @@ public class SimpleBullet : MonoBehaviour {
 	public float damage = 5.0f;
 	public float fallRate = .1f; //the bullet's own gravity
 	public bool active;
+	public float Damage{
+		get{
+			return damage;
+		}
+		set
+		{
+			damage = value;
+		}
+	}
 
 	void Awake(){
 		//active = true;
@@ -33,25 +42,23 @@ public class SimpleBullet : MonoBehaviour {
 			gameObject.GetComponent<Rigidbody>().AddForce (-Vector3.up * fallRate);
 		}
 	}
-	void Damage(float dam){
-		this.damage = dam;
-	}
+
 	[RPC]
 	void OnTriggerStay(Collider other) {
 		if ( other.tag == "mech2") {
 			Debug.Log("mech 2 hit");
 			other.GetComponentInParent<MechMain>().Health -= damage;
-			Destroy(gameObject);
+			PhotonNetwork.Destroy(gameObject);
 		}
 		if ((other.tag == "mech1")) {
 			Debug.Log("mech1 hit");
 			other.GetComponentInParent<MechMain>().Health -= damage;
-			Destroy(gameObject);
+			PhotonNetwork.Destroy(gameObject);
 		}
 		if ((other.tag == "Mech")) {
 			Debug.Log("Mech hit");
 			other.GetComponentInParent<MechMain>().Health -= damage;
-			Destroy(gameObject);
+			PhotonNetwork.Destroy(gameObject);
 		}
 		//active = false;
 	}
