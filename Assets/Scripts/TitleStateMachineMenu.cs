@@ -90,12 +90,14 @@ public class TitleStateMachineMenu : MonoBehaviour {
 			Debug.Log ("select");
 			//JOIN SESSION
 			if (selectedLevel == 0) {
+				Application.LoadLevel(1);
 			}
 			//CHAR SELCT
 			if (selectedLevel == 1) {
 			}
 			//TUTORIAL
 			if (selectedLevel == 2) {
+				Application.LoadLevel(2);
 			}
 			//CREDITS
 			if (selectedLevel == 3) {
