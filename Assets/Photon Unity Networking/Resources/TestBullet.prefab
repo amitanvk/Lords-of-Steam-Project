@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11461150}
   - 65: {fileID: 6531722}
   - 65: {fileID: 6545806}
+  - 114: {fileID: 11462148}
   m_Layer: 2
   m_Name: TestBullet
   m_TagString: Untagged
@@ -62,8 +63,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 272.467468, y: 282.500793, z: -822.547119}
-  m_LocalScale: {x: .219999999, y: .219999999, z: .200000003}
+  m_LocalPosition: {x: -228.179993, y: 249.240005, z: 81.25}
+  m_LocalScale: {x: .349999994, y: .349999994, z: .349999994}
   m_Children:
   - {fileID: 439098}
   m_Father: {fileID: 0}
@@ -136,9 +137,9 @@ Rigidbody:
   m_AngularDrag: .00100000005
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!64 &6439100
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -146,10 +147,10 @@ MeshCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139100}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 124529877e0b95547ba00b1bb3065811, type: 3}
 --- !u!65 &6531722
 BoxCollider:
@@ -159,9 +160,9 @@ BoxCollider:
   m_GameObject: {fileID: 139096}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: .430000007, y: .419999987, z: 1}
+  m_Size: {x: .430000007, y: .419999987, z: .5}
   m_Center: {x: 0, y: .0599999987, z: -.0599999987}
 --- !u!65 &6545806
 BoxCollider:
@@ -171,9 +172,9 @@ BoxCollider:
   m_GameObject: {fileID: 139096}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: .430000007, y: .419999987, z: 1}
+  m_Size: {x: .430000007, y: .419999987, z: .5}
   m_Center: {x: 0, y: .0599999987, z: -.0599999987}
 --- !u!95 &9539100
 Animator:
@@ -206,7 +207,7 @@ MonoBehaviour:
   timer: 0
   lifeSpan: 1.5
   damage: 5
-  fallRate: 1
+  fallRate: .5
   active: 0
 --- !u!114 &11439100
 MonoBehaviour:
@@ -214,7 +215,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139096}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db5e51bc80868ea46a56a1f132b433d3, type: 3}
   m_Name: 
@@ -241,13 +242,26 @@ MonoBehaviour:
   synchronization: 3
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  ownershipTransfer: 1
+  ownershipTransfer: 2
   ObservedComponents:
   - {fileID: 439096}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &11462148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6561e20b8562d3e4495ed9b1320e14ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gotFirstUpdate: 0
+  SmoothingDelay: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

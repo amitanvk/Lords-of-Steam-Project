@@ -32,4 +32,6 @@ MonoBehaviour:
   - fire
   - TakeDamage
   - OnTriggerEnter
+  - GetPooledItem
+  - InstantiateAPS
   DisableAutoOpenWizard: 0

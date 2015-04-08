@@ -20,10 +20,8 @@ public class SimpleBullet : Photon.MonoBehaviour {
 		}
 	}
 
-	void Awake(){
-		//active = true;
-	}
-	void Start () {
+	
+	void OnEnable () {
 		active = true;
 		timer = lifeSpan;
 
@@ -33,33 +31,41 @@ public class SimpleBullet : Photon.MonoBehaviour {
 	void Update () {
 		timer -= Time.deltaTime;
 		if (timer <= 0) {
-			DestroyImmediate(gameObject);
+			gameObject.DestroyAPS();
 		}
 
 	}
 	void FixedUpdate(){
+//		GetComponent<Rigidbody>().AddForce((transform.forward * GetComponent<Weapon>().veloc), ForceMode.Acceleration);
+//		GetComponent<Rigidbody>().AddForce((transform.right * (Random.Range(-1.0f,1.0f)) * GetComponent<Weapon>().innac), ForceMode.Acceleration);
+//		GetComponent<Rigidbody>().AddForce((transform.up * (Random.Range(-1.0f,1.0f))  * GetComponent<Weapon>().innac), ForceMode.Acceleration);
 		if (fallRate > 0 || fallRate < 0) {
 			gameObject.GetComponent<Rigidbody>().AddForce (-Vector3.up * fallRate);
 		}
 	}
 
-	[RPC]
-	void OnTriggerEnter(Collider other) {
+	//[RPC]
+	void OnTriggerStay(Collider other) {
 		if ( other.tag == "mech2") {
 			Debug.Log("mech 2 hit");
 			other.GetComponentInParent<MechMain>().Health -= damage;
-			PhotonNetwork.Destroy(gameObject);
+			PoolingSystem.DestroyAPS(gameObject);
 		}
 		if ((other.tag == "mech1")) {
 			Debug.Log("mech1 hit");
 			other.GetComponentInParent<MechMain>().Health -= damage;
-			PhotonNetwork.Destroy(gameObject);
+			PoolingSystem.DestroyAPS(gameObject);
 		}
 		if ((other.tag == "Mech")) {
-			Debug.Log("Mech hit");
-			//this.collider.
-			other.GetComponentInParent<PhotonView>().RPC("TakeDamage",PhotonTargets.AllBuffered,damage);
-			PhotonNetwork.Destroy(gameObject);
+			if (GetComponent<PhotonView> ().isMine) {
+					Debug.Log ("Mech hit");
+					//this.collider.
+					other.GetComponentInParent<PhotonView> ().RPC ("TakeDamage", PhotonTargets.AllBuffered, damage);
+					gameObject.DestroyAPS ();
+			}
+		} 
+		else {
+			//PoolingSystem.DestroyAPS (gameObject);
 		}
 		//active = false;
 	}

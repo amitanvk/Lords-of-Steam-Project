@@ -116,9 +116,22 @@ public class MechMain : Photon.MonoBehaviour {
 	private Weapon rightWeapon;
 
 	private bool isDead;
+	private PoolingSystem poolingSystemL;
+	private PoolingSystem poolingSystemR;
+	public PoolingSystem poolL{
+		get{
+			return poolingSystemL;
+		}
+	}
+	public PoolingSystem poolR{
+		get{
+			return poolingSystemR;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
+
 		health = 100;
 		energy = 1;
 
@@ -140,8 +153,9 @@ public class MechMain : Photon.MonoBehaviour {
 		rightWeapon.Parent = this;
 
 		Attach (leftWeapon, leftWeaponAttachPoint,-1);
+		leftWeapon.GetComponent<Weapon> ().pool = poolingSystemL;
 		Attach (rightWeapon, rightWeaponAttachPoint,1);
-
+		rightWeapon.GetComponent<Weapon> ().pool = poolingSystemR;
 		isDead = false;
 	}
 
@@ -162,6 +176,7 @@ public class MechMain : Photon.MonoBehaviour {
 	void Update () {
 		UpdateGUI ();
 		State ();
+
 	}
 
 	void FixedUpdate() {
@@ -178,7 +193,9 @@ public class MechMain : Photon.MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.P))
 						health = health - health;
 	}
+	void LateFixedUpdate(){
 
+	}
 
 	void Pause()
 	{
@@ -234,19 +251,18 @@ public class MechMain : Photon.MonoBehaviour {
 				if (Input.GetButton (FireLeft) && energy >= 0) {
 						leftFiring = true;
 						leftWeapon.isFiring = true;
-						//leftWeapon.fire ();
-						leftWeapon.GetComponent<PhotonView>().RPC("fire",PhotonTargets.AllBuffered);
+						leftWeapon.fire ();
+						//leftWeapon.GetComponent<PhotonView>().RPC("fire",PhotonTargets.AllBuffered);
 				} else {
 						leftFiring = false;
 						leftWeapon.isFiring = false;
 				}
-				if (Input.GetButton (FireRight)) {
-						rightFiring = true;
-						if (energy >= 0) {
-								rightWeapon.isFiring = true;
-								//rightWeapon.fire ();
-								rightWeapon.GetComponent<PhotonView>().RPC("fire",PhotonTargets.AllBuffered);
-						}
+				if (Input.GetButton (FireRight) && energy >= 0) {
+						rightFiring = true;						
+						rightWeapon.isFiring = true;
+						rightWeapon.fire ();
+								//rightWeapon.GetComponent<PhotonView>().RPC("fire",PhotonTargets.AllBuffered);
+						
 				} else {
 						rightFiring = false;
 						rightWeapon.isFiring = false;
@@ -384,24 +400,24 @@ public class MechMain : Photon.MonoBehaviour {
 				}
 	}
 
-	void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.tag == "Platform") {
-			Debug.Log("on platform");
-			transform.parent = collision.gameObject.transform;
-
-		}
-
-	}
-
-	void OnCollisionExit(Collision collision)
-	{
-		if (collision.gameObject.tag == "Platform") {
-			Debug.Log("off platform");
-			transform.parent = null;
-		}
-		
-	}
+//	void OnCollisionEnter(Collision collision)
+//	{
+//		if (collision.gameObject.tag == "Platform") {
+//			Debug.Log("on platform");
+//			transform.parent = collision.gameObject.transform;
+//
+//		}
+//
+//	}
+//
+//	void OnCollisionExit(Collision collision)
+//	{
+//		if (collision.gameObject.tag == "Platform") {
+//			Debug.Log("off platform");
+//			transform.parent = null;
+//		}
+//		
+//	}
 	[RPC]
 	public void TakeDamage(float d){
 		this.health -= d;

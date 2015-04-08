@@ -16,9 +16,4 @@ public class LoadLevel : MonoBehaviour {
 		Application.LoadLevel (level);
 				
 	}
-
-	void quit()
-	{
-		Application.Quit ();
-	}
 }

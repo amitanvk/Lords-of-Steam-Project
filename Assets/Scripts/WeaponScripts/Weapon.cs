@@ -11,6 +11,15 @@ public abstract class Weapon : Photon.MonoBehaviour {
 	public Transform attachPoint;
 	public bool isFiring = false;
 	private MechMain parent;
+	public PoolingSystem pooling;
+	public PoolingSystem pool{
+		get{
+			return pooling;
+		}
+		set{
+			pooling = value;
+		}
+	}
 
 	public MechMain Parent {
 		get {
@@ -22,7 +31,7 @@ public abstract class Weapon : Photon.MonoBehaviour {
 	}
 
 
-	[RPC]
+
 	public abstract void fire ();
 
 }

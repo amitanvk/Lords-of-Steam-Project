@@ -60,13 +60,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 451272}
   - 95: {fileID: 9551266}
-  - 65: {fileID: 6551266}
   - 114: {fileID: 11451266}
   - 114: {fileID: 11452156}
   - 64: {fileID: 6402194}
   m_Layer: 0
   m_Name: Chain Gun
-  m_TagString: mech1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151266}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.05233669, y: 11.8958616, z: -6.15352774}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 451272}
@@ -105,7 +104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.29994392, y: 11.7241201, z: 6.03412962}
+  m_LocalPosition: {x: 0, y: 0, z: 14}
   m_LocalScale: {x: 1.37355626, y: 2.10028982, z: 1.15244174}
   m_Children: []
   m_Father: {fileID: 451272}
@@ -117,8 +116,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.59132576, y: 11.9338665, z: 7.5167861}
-  m_LocalScale: {x: -2.294348, y: 2.29434824, z: 2.29434824}
+  m_LocalPosition: {x: -1.5, y: 0, z: 17}
+  m_LocalScale: {x: 2.294348, y: 2.29434824, z: 2.29434824}
   m_Children: []
   m_Father: {fileID: 451272}
   m_RootOrder: 3
@@ -129,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.07617188, y: 0, z: -47.5691528}
+  m_LocalPosition: {x: 73.8000031, y: 282.420013, z: 88.3199997}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 451274}
@@ -145,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 11.8699999, z: -5.76000023}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 451272}
@@ -196,22 +195,10 @@ MeshCollider:
   m_GameObject: {fileID: 151272}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 5e0a53d15eb54f942b3deb7b244a6b95, type: 3}
---- !u!65 &6551266
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151272}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 16}
-  m_Center: {x: -5.5, y: 12, z: -1.5}
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 5e0a53d15eb54f942b3deb7b244a6b95, type: 3}
 --- !u!82 &8251266
 AudioSource:
   m_ObjectHideFlags: 1
@@ -312,13 +299,14 @@ MonoBehaviour:
   damage: 1
   spawn: {fileID: 451270}
   bullet: {fileID: 139096, guid: 577b993495384fd4c925ad5259a6c7d7, type: 2}
-  enCost: 2
+  enCost: .0500000007
   attachPoint: {fileID: 451274}
   isFiring: 0
-  rof: .100000001
-  reload: .300000012
-  inaccuracy: 300
-  vel: 6000
+  pooling: {fileID: 0}
+  rof: .150000006
+  reload: .100000001
+  inaccuracy: 100
+  vel: 5000
 --- !u!114 &11452156
 MonoBehaviour:
   m_ObjectHideFlags: 1

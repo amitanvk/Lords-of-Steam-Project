@@ -48,7 +48,7 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 		newPos.y = Mathf.Clamp (Time.time * 1.5f, newPos.y , newPos.y+1 );
 		//transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, Time.deltaTime * this.SmoothingDelay);
 		//transform.position = newPos;
-		transform.position = Vector3.Lerp (transform.position, newPos, Time.deltaTime * 6.0f);
+		transform.position = Vector3.Lerp (transform.position, newPos, Time.deltaTime * SmoothingDelay);
 	}
 //	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {		
 //		if(stream.isWriting) {

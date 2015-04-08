@@ -7,14 +7,29 @@ public class AutoWeapon : Weapon {
 	public float inaccuracy = 5.0f; //how inaccurate the weapon is
 	protected float counter = 0; // used with rof (rate of fire)
 	public float vel; // the velocity
+	//public PoolingSystem poolingSystem;
+	public float innac {
+		get {
+			return inaccuracy;
+		}
+	}
+	public float veloc {
+		get {
+			return vel;
+		}
+	}
+
+//	void Awake() {
+//		pooling = GetComponentInParent<MechMain>().pool;
+//	}
 	// Use this for initialization
 	void Start () {
 		counter = Time.deltaTime;
+		pooling = PoolingSystem.Instance;
 	}
 	
 	// Update is called once per frame
-
-	[RPC]
+	
 	public override void fire()
 	{
 
@@ -22,11 +37,17 @@ public class AutoWeapon : Weapon {
 			counter += Time.deltaTime;
 			if (rof < counter) {
 				GameObject clone;
-				clone = PhotonNetwork.Instantiate (bullet.name, spawn.position, spawn.rotation,0)as GameObject;
+				//clone = PhotonNetwork.Instantiate (bullet.name, spawn.position, spawn.rotation,0)as GameObject;
+
+				clone = pooling.InstantiateAPS (bullet.name, spawn.position, spawn.rotation);
+				if(clone==null){
+					return;
+				}
+				clone.SetActive(true);
 				clone.GetComponent<SimpleBullet>().Damage = this.damage;
-				clone.GetComponent<Rigidbody>().AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
-				clone.GetComponent<Rigidbody>().AddForce((clone.transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
-				clone.GetComponent<Rigidbody>().AddForce((clone.transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce(((transform.forward * vel)), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody>().AddForce((transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);
 				Parent.Energy -= enCost;
 				counter = 0;
 			}

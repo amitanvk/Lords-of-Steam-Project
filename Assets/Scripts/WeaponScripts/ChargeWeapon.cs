@@ -14,6 +14,7 @@ public class ChargeWeapon : Weapon {
 	public float angle = 0.5f;
 	void Start () {
 		cost = enCost;
+		pooling = PoolingSystem.Instance;
 	}
 
 	void Update () 
