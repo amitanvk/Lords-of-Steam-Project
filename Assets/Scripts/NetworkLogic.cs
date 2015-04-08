@@ -12,6 +12,8 @@ public class NetworkLogic : MonoBehaviour {
 	[SerializeField]
 	private Transform myhud;
 	private GameObject myPlayer;
+	public GameObject prefab;
+	public bool On = false;
 
 	void Start () {
 		spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
@@ -23,7 +25,8 @@ public class NetworkLogic : MonoBehaviour {
 			PhotonNetwork.ConnectUsingSettings ("Lords-Of-Steam-v1.0");
 			connected = true;
 		} else {
-
+			PhotonNetwork.offlineMode = true;
+			OnJoinedLobby();
 					
 		}
 	}
@@ -64,5 +67,20 @@ public class NetworkLogic : MonoBehaviour {
 
 		myPlayer.transform.FindChild ("Main Camera").gameObject.SetActive (true);
 
+	}
+
+	void SpawnOffline(){
+		SpawnSpot mySpawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
+		if (hud != null) {
+			//myhud = (Transform)PhotonNetwork.Instantiate("HUD2", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation,0);
+		}
+		myPlayer = (GameObject)Instantiate(prefab, mySpawnSpot.transform.position, mySpawnSpot.transform.rotation);
+		
+		standbyCamera.GetComponent<AudioListener> ().enabled = false;
+		standbyCamera.enabled = false;
+		myPlayer.GetComponent<MechMain>().enabled = true;
+		
+		myPlayer.transform.FindChild ("Main Camera").gameObject.SetActive (true);
+		On = true;	
 	}
 }
