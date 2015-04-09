@@ -14,6 +14,21 @@ public class MechMain : Photon.MonoBehaviour {
 	[SerializeField]
 	private Transform energyBar;
 
+	// 3D HUD
+	public Transform health3DText;
+	public Transform energy3DText;
+	public Transform recharge3DText;
+	public Transform lives3DText;
+
+	//PAUSE MENU
+	public Transform selector;
+	public Transform pauseMenuTitle;
+	public Transform[] menuOptions;
+	public int selected;
+	public bool pauseMenu = false;
+	public bool menuCanMove = true;
+	// END PAUSE MENU CODE
+
 	[SerializeField]
 	private float healthMax;
 	[SerializeField]
@@ -199,10 +214,74 @@ public class MechMain : Photon.MonoBehaviour {
 
 	void Pause()
 	{
+		if (!pauseMenu) {
+			pauseMenu = true;
+			pauseMenuTitle.gameObject.SetActive(true);
+			selector.gameObject.SetActive(true);
+			for(int i = 0; i < menuOptions.Length;i++)
+			{
+				menuOptions[i].gameObject.SetActive(true);
+			}
+				}
+		/*
 		if (Input.GetButtonDown (startButton)) 
 		{
-			isControllable = !isControllable;
+			isControllable = true;
 			Debug.Log("Can control: " + isControllable);
+			pauseMenu = false;	
+			pauseMenuTitle.gameObject.SetActive(false);
+			selector.gameObject.SetActive(false);
+			for(int i = 0; i < menuOptions.Length;i++)
+			{
+				menuOptions[i].gameObject.SetActive(false);
+			}
+		}
+		*/
+		if(Input.GetAxisRaw(Vertical) > 0 && menuCanMove)
+		{
+			if (selected > 0) 
+			{
+				menuCanMove = false;
+				selected = selected - 1;
+				Debug.Log ("Selected Option: " + selected);
+			}
+		}
+		if(Input.GetAxisRaw(Vertical) < 0 && menuCanMove)
+		{
+			if (selected < menuOptions.Length - 1) 
+			{
+				menuCanMove = false;
+				selected = selected + 1;
+				Debug.Log ("Selected Option: " + selected);
+			}
+		}
+		if (Input.GetAxisRaw (Vertical) == 0) {
+			menuCanMove = true;
+		}
+
+		Vector3 newPos = menuOptions [selected].position;
+		newPos.z += 0.01f;
+		selector.transform.position = newPos;
+
+		if (Input.GetButtonDown (jump)) 
+		{
+			if(selected == 0)
+			{
+
+				Debug.Log("Can control: " + isControllable);
+				pauseMenu = false;	
+				pauseMenuTitle.gameObject.SetActive(false);
+				selector.gameObject.SetActive(false);
+				for(int i = 0; i < menuOptions.Length;i++)
+				{
+					menuOptions[i].gameObject.SetActive(false);
+				}
+				isControllable = true;
+			}
+			if(selected == 1)
+			{
+				Application.LoadLevel(0);
+			}
 		}
 
 	}
@@ -213,7 +292,7 @@ public class MechMain : Photon.MonoBehaviour {
 	{
 		if (Input.GetButtonDown (startButton)) 
 		{
-			isControllable = !isControllable;
+			isControllable = false;
 			Debug.Log("Can control: " + isControllable);
 		}
 				Quaternion AddRot = Quaternion.identity;
@@ -386,6 +465,12 @@ public class MechMain : Photon.MonoBehaviour {
 						tempEnergy.x = (energy / energyMax) * scaling;
 						energyBar.localScale = tempEnergy;
 						healthBar.localScale = tempHealth;
+				}
+		if (health3DText != null) {
+						health3DText.GetComponent<TextMesh> ().text = "Health: " + health.ToString("n2") + "%";
+
+						energy3DText.GetComponent<TextMesh> ().text = "Energy: " + energy.ToString("n2") + "%";
+						recharge3DText.GetComponent<TextMesh> ().text = "Recharge: " + enWait;
 				}
 	}
 	//TRIGGER METHODS

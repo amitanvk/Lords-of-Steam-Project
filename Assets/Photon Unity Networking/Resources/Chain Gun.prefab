@@ -299,7 +299,7 @@ MonoBehaviour:
   damage: 1
   spawn: {fileID: 451270}
   bullet: {fileID: 139096, guid: 577b993495384fd4c925ad5259a6c7d7, type: 2}
-  enCost: .0500000007
+  enCost: 2.5
   attachPoint: {fileID: 451274}
   isFiring: 0
   pooling: {fileID: 0}
