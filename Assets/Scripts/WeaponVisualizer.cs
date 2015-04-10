@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class WeaponVisualizer : MonoBehaviour {
 	
@@ -8,6 +8,7 @@ public class WeaponVisualizer : MonoBehaviour {
 	[SerializeField]
 	private Transform rightWeaponAttachPoint;
 
+	private Dictionary<GameObject, string> names;
 	private Object[] prefabs;
 	private GameObject[] left;
 	private GameObject[] right;
@@ -18,12 +19,15 @@ public class WeaponVisualizer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		names = new Dictionary<GameObject, string> ();
 		prefabs = Resources.LoadAll ("Weapons");
 		left = new GameObject[prefabs.Length];
 		right = new GameObject[prefabs.Length];
 		for (int i = 0; i < prefabs.Length; i++) {
 			left[i] = (GameObject)Instantiate(prefabs[i]);
 			right[i] = (GameObject)Instantiate(prefabs[i]);
+			names[left[i]] = prefabs[i].name;
+			names[right[i]] = prefabs[i].name;
 			Attach (left[i], leftWeaponAttachPoint, -1);
 			Attach(right[i], rightWeaponAttachPoint, 1);
 		}
@@ -45,8 +49,9 @@ public class WeaponVisualizer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		leftName = left [leftSelected].name;
-		rightName = right [rightSelected].name;
+		leftName = names[left [leftSelected]];
+		rightName = names[right [rightSelected]];
+		Debug.Log (Resources.Load("Weapons/"+leftName));
 		PlayerPrefs.SetString ("LeftWeapon", leftName);
 		PlayerPrefs.SetString ("RightWeapon", rightName);
 		for(int i = 0; i < left.Length; i++) {

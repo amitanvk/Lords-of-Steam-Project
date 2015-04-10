@@ -176,7 +176,7 @@ public class MechMain : Photon.MonoBehaviour {
 		if (PlayerPrefs.HasKey (playerPrefRightKey)) {
 			rightWeaponPath = PlayerPrefs.GetString(playerPrefRightKey);
 		}
-
+		Debug.Log ("Weapons/" + leftWeaponPath);
 		leftWeapon = ((GameObject)Instantiate (Resources.Load ("Weapons/" + leftWeaponPath))).GetComponentInChildren<Weapon> ();
 		rightWeapon = ((GameObject)Instantiate (Resources.Load ("Weapons/" + rightWeaponPath))).GetComponentInChildren<Weapon> ();
 
