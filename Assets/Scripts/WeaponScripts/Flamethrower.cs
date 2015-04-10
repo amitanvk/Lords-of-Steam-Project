@@ -3,11 +3,7 @@ using System.Collections;
 
 public class Flamethrower : Weapon {
 	public Transform smoke;
-	AudioSource source;
-	void Start()
-	{
-		source = GetComponent<AudioSource> ();
-	}
+
 	void Update()
 	{
 		particleSystems ();
@@ -25,16 +21,11 @@ public class Flamethrower : Weapon {
 	{
 		if (isFiring) 
 		{
-			if(!source.isPlaying)
-			{
-				source.Play();
-			}
 			spawn.GetComponent<ParticleSystem>().Play();
 			smoke.GetComponent<ParticleSystem>().Play();
 		} 
 		else 
 		{
-			source.Stop();
 			spawn.GetComponent<ParticleSystem>().Stop();
 			smoke.GetComponent<ParticleSystem>().Stop();
 		}

@@ -122,10 +122,10 @@ public class MechMain : Photon.MonoBehaviour {
 	[SerializeField]
 	private Transform rightWeaponAttachPoint;
 
-	[SerializeField]
-	private Weapon leftWeaponPrefab;
-	[SerializeField]
-	private Weapon rightWeaponPrefab;
+//	[SerializeField]
+//	private Weapon leftWeaponPrefab;
+//	[SerializeField]
+//	private Weapon rightWeaponPrefab;
 
 	[SerializeField]
 	private string leftWeaponPath;
@@ -139,9 +139,10 @@ public class MechMain : Photon.MonoBehaviour {
 
 	private Weapon leftWeapon;
 	private Weapon rightWeapon;
+	public TextMesh text;
 
 	private bool isDead;
-	private PoolingSystem poolingSystemL;
+	public PoolingSystem poolingSystemL;
 	private PoolingSystem poolingSystemR;
 	public PoolingSystem poolL{
 		get{
@@ -155,7 +156,7 @@ public class MechMain : Photon.MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 
 		health = 100;
 		energy = 1;
@@ -314,57 +315,39 @@ public class MechMain : Photon.MonoBehaviour {
 			isControllable = false;
 			Debug.Log("Can control: " + isControllable);
 		}
-		Quaternion AddRot = Quaternion.identity;
-		float yaw = 0;
+				Quaternion AddRot = Quaternion.identity;
+				float yaw = 0;
 
-		if (Input.GetButtonDown (locker)) {
-				lockOn = !lockOn;
-		}
-		if (lockOn) {
-			if (enemyMech != null) {
-			transform.LookAt (enemyMech.transform.position);
-			}
-		}
-		//TESTING DASH CODE
-		if (Input.GetButtonDown (dash)) 
-		{
-			if (energy > (0.0f+dashCost)) {
-				dashOn = true;
-				energy -= dashCost;
-				if(Input.GetAxis(Horizontal) == 0 && Input.GetAxis(Vertical) == 0)
-				{
-					GetComponent<Rigidbody>().AddForce(transform.forward * -1*dashForce);
+				if (Input.GetButtonDown (locker)) {
+						lockOn = !lockOn;
 				}
-				else
-				{
-					GetComponent<Rigidbody>().AddForce(((transform.forward * Input.GetAxis(Vertical)) + (transform.right*Input.GetAxis(Horizontal)))*dashForce);
+				if (lockOn) {
+						if (enemyMech != null) {
+								transform.LookAt (enemyMech.transform.position);
+						}
 				}
-			}
-		}
-		if (Input.GetButtonUp (dash)) {
-			dashOn = false;
-		}
-		//old dash code
-		/*
-		if (Input.GetButton (dash)) {
-			dashOn = true;
-			if (energy > 0.0f) {
-				moveForce = Mathf.Lerp (moveForce, dashForce, 1.0f);
-				energy -= dashCost;
+				
+				if (Input.GetButton (dash)) {
+						dashOn = true;
 
-			} 
-			else 
-			{
-				moveForce = defaultForce;
-			}
-		} 
-		else {
-			dashOn = false;
-			moveForce = defaultForce;
-		}
-		*/
+						if (energy > 0.0f) {
+
+								moveForce = Mathf.Lerp (moveForce, dashForce, 1.0f);
+								energy -= dashCost;
+						} else {
+								moveForce = defaultForce;
+						}
+				} else {
+						dashOn = false;
+						moveForce = defaultForce;
+				}
+				/**
+				if (Input.GetButtonDown (dash)) {
+					
+				}
+				**/
 				//WEAPON FIRING
-		if (Input.GetButton (FireLeft) && energy >= 0) {
+				if (Input.GetButton (FireLeft) && energy >= 0) {
 						leftFiring = true;
 						leftWeapon.isFiring = true;
 						leftWeapon.fire ();
@@ -543,6 +526,8 @@ public class MechMain : Photon.MonoBehaviour {
 	[RPC]
 	public void TakeDamage(float d){
 		this.health -= d;
+		GameObject dText = poolingSystemL.InstantiateAPS (text.name, transform.position, transform.rotation) as GameObject;
+		dText.GetComponent<TextMesh> ().text = " -" + d;
 		if (health <= 0) {
 			//Destroy(gameObject);
 			if (!isDead) {
@@ -569,7 +554,26 @@ public class MechMain : Photon.MonoBehaviour {
 		// Detach everything
 		rightWeapon.transform.parent = null;
 		leftWeapon.transform.parent = null;
-		rightWeapon.GetComponent<Rigidbody> ().AddExplosionForce (3000,transform.position, 10);
-		leftWeapon.GetComponent<Rigidbody> ().AddExplosionForce (3000, transform.position, 10);
+		rightWeapon.GetComponent<Rigidbody> ().AddExplosionForce (3000,transform.position, 10,0,ForceMode.Acceleration);
+		leftWeapon.GetComponent<Rigidbody> ().AddExplosionForce (3000, transform.position, 10,0,ForceMode.Acceleration);
+
+		GameObject deathClone = PhotonNetwork.Instantiate("BrokenChassis", transform.position, transform.rotation,0);
+		deathClone.GetComponent<Rigidbody>().AddExplosionForce (50f,transform.position,30f,0,ForceMode.Acceleration);
+		if( GetComponent<PhotonView>().isMine ) {
+			if( gameObject.tag == "Player" ) {		// This is my actual PLAYER object, then initiate the respawn process
+				NetworkLogic nm = GameObject.FindObjectOfType<NetworkLogic>();
+				
+				nm.standbyCamera.SetActive(true);
+				nm.respawnTimer = 3f;
+			}
+			else if( gameObject.tag == "Bot" ) {
+				Debug.LogError("WARNING: No bot respawn code exists!");
+			}
+			
+			PhotonNetwork.Destroy(gameObject);
+		}
+
+
+
 	}
 }

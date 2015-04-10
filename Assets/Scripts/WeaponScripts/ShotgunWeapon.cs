@@ -38,7 +38,6 @@ public class ShotgunWeapon : Weapon {
 					StartCoroutine (wait ());
 				}
 			}
-			GetComponent<AudioSource>().Play();
 			
 		}
 	}

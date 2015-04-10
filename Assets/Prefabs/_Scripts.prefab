@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 498688}
   - 82: {fileID: 8286968}
-  - 114: {fileID: 11440464}
   - 114: {fileID: 11427712}
   - 114: {fileID: 11451184}
   m_Layer: 0
@@ -125,22 +124,6 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
---- !u!114 &11440464
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110570}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f6f72ce17e99f4ba1ce4fe82b1bd6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolingItems:
-  - prefab: {fileID: 139096, guid: 577b993495384fd4c925ad5259a6c7d7, type: 2}
-    amount: 15
-  defaultPoolAmount: 15
-  poolExpand: 0
 --- !u!114 &11451184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,6 +140,9 @@ MonoBehaviour:
   online: 1
   hud: {fileID: 0}
   myhud: {fileID: 0}
+  prefab: {fileID: 0}
+  respawnTimer: 0
+  On: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
