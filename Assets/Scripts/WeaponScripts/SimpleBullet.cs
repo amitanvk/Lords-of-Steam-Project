@@ -9,7 +9,10 @@ public class SimpleBullet : Photon.MonoBehaviour {
 	public float lifeSpan = 10.0f;
 	public float damage = 1.0f;
 	public float fallRate = .1f; //the bullet's own gravity
+	//public ParticleSystem shot = null;
+
 	public bool active;
+
 	public float Damage{
 		get{
 			return damage;
@@ -25,16 +28,36 @@ public class SimpleBullet : Photon.MonoBehaviour {
 		active = true;
 		timer = lifeSpan;
 
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		timer -= Time.deltaTime;
+//		if (shot != null) {
+//			particleSystems();
+//		}
 		if (timer <= 0) {
 			gameObject.DestroyAPS();
 		}
 
 	}
+//	[RPC]
+//	public void particleSystems()
+//	{
+//
+//			//spawn.GetComponent<ParticleSystem> ().Play ();
+//			shot.GetComponent<ParticleSystem> ().Play ();
+//
+//		
+//	}
+//	[RPC]
+//	public void stopParticle(){
+//		//spawn.GetComponent<ParticleSystem>().Stop();
+//		shot.GetComponent<ParticleSystem>().Stop();
+//
+//		
+//	}
 	void FixedUpdate(){
 //		GetComponent<Rigidbody>().AddForce((transform.forward * GetComponent<Weapon>().veloc), ForceMode.Acceleration);
 //		GetComponent<Rigidbody>().AddForce((transform.right * (Random.Range(-1.0f,1.0f)) * GetComponent<Weapon>().innac), ForceMode.Acceleration);
@@ -42,6 +65,14 @@ public class SimpleBullet : Photon.MonoBehaviour {
 		if (fallRate > 0 || fallRate < 0) {
 			gameObject.GetComponent<Rigidbody>().AddForce (-Vector3.up * fallRate);
 		}
+	}
+	void OnDrawGizmos(){
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(transform.position, new Vector3(3, 3, 3));
+	}
+	void OnDrawGizmosSelected() {
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireCube(transform.position, new Vector3(7, 7, 7));
 	}
 
 	//[RPC]
@@ -61,6 +92,9 @@ public class SimpleBullet : Photon.MonoBehaviour {
 					Debug.Log ("Mech hit");
 					//this.collider.
 					other.GetComponentInParent<PhotonView> ().RPC ("TakeDamage", PhotonTargets.AllBuffered, damage);
+//				if (shot != null) {
+//					stopParticle();
+//				}
 					gameObject.DestroyAPS ();
 			}
 		} 
