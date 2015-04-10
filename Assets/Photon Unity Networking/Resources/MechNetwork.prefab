@@ -1326,7 +1326,7 @@ MonoBehaviour:
   health: 0
   enWait: 3
   moveForce: 100
-  dashForce: 1000
+  dashForce: 3000
   defaultForce: 0
   hoverForce: 0
   rotationSpeed: 120
