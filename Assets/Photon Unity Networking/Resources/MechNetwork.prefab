@@ -1289,9 +1289,7 @@ MonoBehaviour:
   poolingItems:
   - prefab: {fileID: 139096, guid: 577b993495384fd4c925ad5259a6c7d7, type: 2}
     amount: 0
-  - prefab: {fileID: 172306, guid: f4b5765f5ae05be44ac49e5353499270, type: 2}
-    amount: 0
-  defaultPoolAmount: 10
+  defaultPoolAmount: 5
   poolExpand: 1
 --- !u!114 &11498704
 MonoBehaviour:
@@ -1345,12 +1343,12 @@ MonoBehaviour:
   jumpCount: 0
   leftWeaponAttachPoint: {fileID: 498692}
   rightWeaponAttachPoint: {fileID: 498694}
-  leftWeaponPath: Flamethrower
+  leftWeaponPrefab: {fileID: 11451266, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
+  rightWeaponPrefab: {fileID: 11470990, guid: 20ecf93926acd6248abc2aa64521a9e2, type: 2}
+  leftWeaponPath: Chain Gun
   rightWeaponPath: Chain Gun
   playerPrefLeftKey: LeftWeapon
   playerPrefRightKey: RightWeapon
-  text: {fileID: 0}
-  poolingSystemL: {fileID: 0}
 --- !u!124 &12498704
 Behaviour:
   m_ObjectHideFlags: 1
