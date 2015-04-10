@@ -210,7 +210,7 @@ public class MechMain : Photon.MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		UpdateGUI ();
-		State ();
+//		State ();
 
 	}
 
@@ -454,22 +454,22 @@ public class MechMain : Photon.MonoBehaviour {
 		}
 	}
 
-	void State()
-	{
-		if (health <= 0) {
-			//Destroy(gameObject);
-			if (!isDead) {
-				Death ();
-				isDead = true;
-				isControllable = false;
-			}
-
-			//if(isControllable)
-				//GetComponent<ParticleSystem>().Emit(1000);
-
-
-		}
-	}
+//	void State()
+//	{
+//		if (health <= 0) {
+//			//Destroy(gameObject);
+//			if (!isDead) {
+//				Death ();
+//				isDead = true;
+//				isControllable = false;
+//			}
+//
+//			//if(isControllable)
+//				//GetComponent<ParticleSystem>().Emit(1000);
+//
+//
+//		}
+//	}
 	void OnGui(){
 		GUILayout.Label (health + "         " + energy);
 	}

@@ -2280,7 +2280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c521aae5c63cf4242ab25728bbeb0bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: .100000001
   spawn: {fileID: 401896}
   bullet: {fileID: 172306, guid: f4b5765f5ae05be44ac49e5353499270, type: 2}
   enCost: 2
