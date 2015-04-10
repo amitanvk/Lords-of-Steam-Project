@@ -2454,8 +2454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de29d751cc0674a46950281491828d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftWeaponAttachPoint: {fileID: 0}
-  rightWeaponAttachPoint: {fileID: 0}
+  leftWeaponAttachPoint: {fileID: 4022330}
+  rightWeaponAttachPoint: {fileID: 1705445529}
+  leftSelected: 0
+  rightSelected: 0
 --- !u!1001 &1434825835
 Prefab:
   m_ObjectHideFlags: 0

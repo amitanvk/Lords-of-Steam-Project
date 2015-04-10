@@ -1345,6 +1345,10 @@ MonoBehaviour:
   rightWeaponAttachPoint: {fileID: 498694}
   leftWeaponPrefab: {fileID: 11451266, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
   rightWeaponPrefab: {fileID: 11451266, guid: 46391e07c6af32741a9e7db31f71cde6, type: 2}
+  leftWeaponPath: Chain Gun
+  rightWeaponPath: Chain Gun
+  playerPrefLeftKey: LeftWeapon
+  playerPrefRightKey: RightWeapon
 --- !u!124 &12498704
 Behaviour:
   m_ObjectHideFlags: 1

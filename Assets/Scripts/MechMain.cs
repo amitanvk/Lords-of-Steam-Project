@@ -127,6 +127,16 @@ public class MechMain : Photon.MonoBehaviour {
 	[SerializeField]
 	private Weapon rightWeaponPrefab;
 
+	[SerializeField]
+	private string leftWeaponPath;
+	[SerializeField]
+	private string rightWeaponPath;
+	
+	[SerializeField]
+	private string playerPrefLeftKey = "";
+	[SerializeField]
+	private string playerPrefRightKey = "";
+
 	private Weapon leftWeapon;
 	private Weapon rightWeapon;
 
@@ -160,9 +170,18 @@ public class MechMain : Photon.MonoBehaviour {
 		defaultForce = moveForce;
 		enCount = enWait;
 
+		if (PlayerPrefs.HasKey (playerPrefLeftKey)) {
+			leftWeaponPath = PlayerPrefs.GetString(playerPrefLeftKey);
+		}
+		if (PlayerPrefs.HasKey (playerPrefRightKey)) {
+			rightWeaponPath = PlayerPrefs.GetString(playerPrefRightKey);
+		}
 
-		leftWeapon = (Weapon) Instantiate (leftWeaponPrefab);
-		rightWeapon = (Weapon) Instantiate (rightWeaponPrefab);
+		leftWeapon = ((GameObject)Instantiate (Resources.Load ("Weapons/" + leftWeaponPath))).GetComponentInChildren<Weapon> ();
+		rightWeapon = ((GameObject)Instantiate (Resources.Load ("Weapons/" + rightWeaponPath))).GetComponentInChildren<Weapon> ();
+
+		//leftWeapon = (Weapon) Instantiate (leftWeaponPrefab);
+		//rightWeapon = (Weapon) Instantiate (rightWeaponPrefab);
 
 		leftWeapon.Parent = this;
 		rightWeapon.Parent = this;
