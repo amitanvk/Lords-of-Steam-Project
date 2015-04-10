@@ -34,4 +34,6 @@ MonoBehaviour:
   - OnTriggerEnter
   - GetPooledItem
   - InstantiateAPS
+  - particleSystems
+  - stopParticle
   DisableAutoOpenWizard: 0
