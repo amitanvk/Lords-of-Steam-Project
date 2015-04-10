@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NetworkLogic : Photon.MonoBehaviour {
+public class NetworkLogic : MonoBehaviour {
 
 	public GameObject standbyCamera;
 	public SpawnSpot[] spawnSpots;
@@ -66,19 +66,17 @@ public class NetworkLogic : Photon.MonoBehaviour {
 		PhotonNetwork.CreateRoom( null );
 	}
 	void SpawnMyPlayer(){
-		//if (photonView.isMine) {
-			SpawnSpot mySpawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
-			if (hud != null) {
-				//myhud = (Transform)PhotonNetwork.Instantiate("HUD2", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation,0);
-			}
-			myPlayer = (GameObject)PhotonNetwork.Instantiate ("MechNetwork", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
+		SpawnSpot mySpawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
+		if (hud != null) {
+			//myhud = (Transform)PhotonNetwork.Instantiate("HUD2", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation,0);
+		}
+		myPlayer = (GameObject)PhotonNetwork.Instantiate("MechNetwork", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation,0);
 
-			standbyCamera.GetComponent<AudioListener> ().enabled = false;
-			standbyCamera.SetActive (false);
-			myPlayer.GetComponent<MechMain> ().enabled = true;
+		standbyCamera.GetComponent<AudioListener> ().enabled = false;
+		standbyCamera.SetActive(false);
+		myPlayer.GetComponent<MechMain>().enabled = true;
 
-			myPlayer.transform.FindChild ("Main Camera").gameObject.SetActive (true);
-		//}
+		myPlayer.transform.FindChild ("Main Camera").gameObject.SetActive (true);
 
 	}
 
