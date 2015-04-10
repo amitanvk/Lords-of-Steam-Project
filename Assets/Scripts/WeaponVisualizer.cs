@@ -47,6 +47,8 @@ public class WeaponVisualizer : MonoBehaviour {
 	void Update () {
 		leftName = left [leftSelected].name;
 		rightName = right [rightSelected].name;
+		PlayerPrefs.SetString ("LeftWeapon", leftName);
+		PlayerPrefs.SetString ("RightWeapon", rightName);
 		for(int i = 0; i < left.Length; i++) {
 			left[i].SetActive(i == leftSelected);
 			right[i].SetActive(i == rightSelected);
