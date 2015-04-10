@@ -312,33 +312,25 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11450504, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
+    - target: {fileID: 11440002, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
       propertyPath: viewIdField
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11450504, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
+    - target: {fileID: 11440002, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11440002, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
+    - target: {fileID: 11450504, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
       propertyPath: viewIdField
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11440002, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
+    - target: {fileID: 11450504, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
       propertyPath: instantiationId
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 198704, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 412156, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
-      propertyPath: m_LocalPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 494748, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 70d2c8ad8dfb5264e8f0171597f2abee, type: 2}
@@ -793,7 +785,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 382594988}
-  m_Text: Use Space / Right Trigger to shoot right weapon
+  m_Text: Use Space / Right Bumper to shoot right weapon
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -2629,7 +2621,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1167627806}
-  m_Text: Dash  with C | B button
+  m_Text: Dash backward with C | B button. Dash in any direction with Movement
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -4008,7 +4000,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1726958122}
-  m_Text: Use Left Shift / Left Trigger to shoot left weapon
+  m_Text: Use Left Shift / Left Bumper to shoot left weapon
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

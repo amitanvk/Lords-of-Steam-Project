@@ -314,39 +314,57 @@ public class MechMain : Photon.MonoBehaviour {
 			isControllable = false;
 			Debug.Log("Can control: " + isControllable);
 		}
-				Quaternion AddRot = Quaternion.identity;
-				float yaw = 0;
+		Quaternion AddRot = Quaternion.identity;
+		float yaw = 0;
 
-				if (Input.GetButtonDown (locker)) {
-						lockOn = !lockOn;
+		if (Input.GetButtonDown (locker)) {
+				lockOn = !lockOn;
+		}
+		if (lockOn) {
+			if (enemyMech != null) {
+			transform.LookAt (enemyMech.transform.position);
+			}
+		}
+		//TESTING DASH CODE
+		if (Input.GetButtonDown (dash)) 
+		{
+			if (energy > (0.0f+dashCost)) {
+				dashOn = true;
+				energy -= dashCost;
+				if(Input.GetAxis(Horizontal) == 0 && Input.GetAxis(Vertical) == 0)
+				{
+					GetComponent<Rigidbody>().AddForce(transform.forward * -1*dashForce);
 				}
-				if (lockOn) {
-						if (enemyMech != null) {
-								transform.LookAt (enemyMech.transform.position);
-						}
+				else
+				{
+					GetComponent<Rigidbody>().AddForce(((transform.forward * Input.GetAxis(Vertical)) + (transform.right*Input.GetAxis(Horizontal)))*dashForce);
 				}
-				
-				if (Input.GetButton (dash)) {
-						dashOn = true;
+			}
+		}
+		if (Input.GetButtonUp (dash)) {
+			dashOn = false;
+		}
+		//old dash code
+		/*
+		if (Input.GetButton (dash)) {
+			dashOn = true;
+			if (energy > 0.0f) {
+				moveForce = Mathf.Lerp (moveForce, dashForce, 1.0f);
+				energy -= dashCost;
 
-						if (energy > 0.0f) {
-
-								moveForce = Mathf.Lerp (moveForce, dashForce, 1.0f);
-								energy -= dashCost;
-						} else {
-								moveForce = defaultForce;
-						}
-				} else {
-						dashOn = false;
-						moveForce = defaultForce;
-				}
-				/**
-				if (Input.GetButtonDown (dash)) {
-					
-				}
-				**/
+			} 
+			else 
+			{
+				moveForce = defaultForce;
+			}
+		} 
+		else {
+			dashOn = false;
+			moveForce = defaultForce;
+		}
+		*/
 				//WEAPON FIRING
-				if (Input.GetButton (FireLeft) && energy >= 0) {
+		if (Input.GetButton (FireLeft) && energy >= 0) {
 						leftFiring = true;
 						leftWeapon.isFiring = true;
 						leftWeapon.fire ();
