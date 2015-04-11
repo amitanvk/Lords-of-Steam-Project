@@ -60,9 +60,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 454728}
   - 95: {fileID: 9554868}
-  - 114: {fileID: 11454868}
   - 65: {fileID: 6550044}
-  - 82: {fileID: 8248810}
+  - 114: {fileID: 11416012}
+  - 114: {fileID: 11430134}
+  - 82: {fileID: 8245500}
   m_Layer: 0
   m_Name: Flamethrower
   m_TagString: Untagged
@@ -1080,8 +1081,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101896}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -.280000001, y: 3.26999998, z: -4.63000011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.959999979, y: 3.33999991, z: 6.82999992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454728}
@@ -1104,8 +1105,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154726}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 1.86000001, y: 3.55999994, z: .239999995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 4, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454728}
@@ -1116,8 +1117,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154728}
-  m_LocalRotation: {x: 0, y: .998783648, z: 0, w: .0493084602}
-  m_LocalPosition: {x: 4.11810303, y: 0, z: -52.9455566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 158.968948, y: 276.333527, z: 8.5426693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454732}
@@ -1195,7 +1196,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154754}
-  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.253340304, y: 2.70686054, z: -3.1622498}
   m_LocalScale: {x: 1.07044494, y: .74482882, z: 1.03450358}
   m_Children:
@@ -1282,7 +1283,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154834}
-  m_LocalRotation: {x: 0, y: .0793724656, z: 0, w: .996845067}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
   m_LocalPosition: {x: 0, y: 3.23321247, z: 0}
   m_LocalScale: {x: .99999994, y: 1, z: 1}
   m_Children:
@@ -2226,8 +2227,8 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.45000005, y: 3.50999999, z: 10.0900002}
-  m_Center: {x: -.280000001, y: 3.20000005, z: -12.3000002}
---- !u!82 &8248810
+  m_Center: {x: -.280000001, y: 3.20000005, z: 12}
+--- !u!82 &8245500
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2238,7 +2239,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7cac756f40dca974fa089585ea3fd4a3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .287999988
+  m_Volume: .540000021
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2313,7 +2314,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11454868
+--- !u!114 &11416012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2321,17 +2322,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 154728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0baf352e25fa37459bdff6ef0bbdbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: .25
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 454728}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  isRuntimeInstantiated: 0
+--- !u!114 &11430134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c521aae5c63cf4242ab25728bbeb0bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
   spawn: {fileID: 401896}
-  bullet: {fileID: 0}
-  enCost: 1
+  bullet: {fileID: 172306, guid: f4b5765f5ae05be44ac49e5353499270, type: 2}
+  enCost: 2
   attachPoint: {fileID: 454726}
   isFiring: 0
   pooling: {fileID: 0}
-  smoke: {fileID: 401898}
+  rof: .0500000007
+  reload: .300000012
+  inaccuracy: 150
+  vel: 500
 --- !u!198 &19801896
 ParticleSystem:
   m_ObjectHideFlags: 1

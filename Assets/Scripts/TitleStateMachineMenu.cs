@@ -128,6 +128,7 @@ public class TitleStateMachineMenu : MonoBehaviour {
 			}
 			//TUTORIAL
 			if (selectedLevel == 2) {
+				PhotonNetwork.ConnectUsingSettings ("Lords-Of-Steam-v1.0");
 				Application.LoadLevel(2);
 			}
 			//CREDITS

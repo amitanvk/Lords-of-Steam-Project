@@ -3,6 +3,7 @@ using System.Collections;
 
 public class NetworkLogic : MonoBehaviour {
 
+	public int lives = 3;
 	public Camera standbyCamera;
 	public SpawnSpot[] spawnSpots;
 	public bool online = true;
@@ -14,6 +15,7 @@ public class NetworkLogic : MonoBehaviour {
 	private GameObject myPlayer;
 	public GameObject prefab;
 	public bool On = false;
+	public float respawnTimer = 0.0f;
 
 	void Start () {
 		spawnSpots = GameObject.FindObjectsOfType<SpawnSpot>();
@@ -33,6 +35,12 @@ public class NetworkLogic : MonoBehaviour {
 	void Update(){
 		if (connected == false) {
 			Connect ();
+		}
+		if (respawnTimer > 0) {
+			respawnTimer -= Time.deltaTime;
+			if(respawnTimer<=0){
+				SpawnMyPlayer();
+			}
 		}
 	}
 	void OnGUI(){
@@ -55,18 +63,22 @@ public class NetworkLogic : MonoBehaviour {
 		PhotonNetwork.CreateRoom( null );
 	}
 	void SpawnMyPlayer(){
-		SpawnSpot mySpawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
-		if (hud != null) {
-			//myhud = (Transform)PhotonNetwork.Instantiate("HUD2", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation,0);
+		if (lives > 0) {
+			lives -= 1;
+			SpawnSpot mySpawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
+			if (hud != null) {
+				//myhud = (Transform)PhotonNetwork.Instantiate("HUD2", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation,0);
+			}
+			myPlayer = (GameObject)PhotonNetwork.Instantiate ("MechNetwork", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation, 0);
+
+			standbyCamera.GetComponent<AudioListener> ().enabled = false;
+			standbyCamera.enabled = false;
+			myPlayer.GetComponent<MechMain> ().enabled = true;
+
+			myPlayer.transform.FindChild ("Main Camera").gameObject.SetActive (true);
+		} else {
+			Application.LoadLevel(0);
 		}
-		myPlayer = (GameObject)PhotonNetwork.Instantiate("MechNetwork", mySpawnSpot.transform.position, mySpawnSpot.transform.rotation,0);
-
-		standbyCamera.GetComponent<AudioListener> ().enabled = false;
-		standbyCamera.enabled = false;
-		myPlayer.GetComponent<MechMain>().enabled = true;
-
-		myPlayer.transform.FindChild ("Main Camera").gameObject.SetActive (true);
-
 	}
 
 	void SpawnOffline(){
@@ -82,5 +94,14 @@ public class NetworkLogic : MonoBehaviour {
 		
 		myPlayer.transform.FindChild ("Main Camera").gameObject.SetActive (true);
 		On = true;	
+	}
+
+	public void Disconnect()
+	{
+		PhotonNetwork.Disconnect ();
+	}
+	public void LeaveRoom()
+	{
+		PhotonNetwork.LeaveRoom ();
 	}
 }

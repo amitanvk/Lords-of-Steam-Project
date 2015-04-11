@@ -101,6 +101,8 @@ public class MechMain : Photon.MonoBehaviour {
 	[SerializeField]
 	private string startButton;
 
+	private int lives;
+
 	private bool lockOn;
 	private bool dashOn;
 	private bool overHeat;
@@ -157,6 +159,7 @@ public class MechMain : Photon.MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		lives = GameObject.FindObjectOfType<NetworkLogic>().lives +1;
 		health = 100;
 		energy = 1;
 
@@ -177,9 +180,8 @@ public class MechMain : Photon.MonoBehaviour {
 			rightWeaponPath = PlayerPrefs.GetString(playerPrefRightKey);
 		}
 		Debug.Log ("Weapons/" + leftWeaponPath);
-		leftWeapon = ((GameObject)Instantiate (Resources.Load ("Weapons/" + leftWeaponPath))).GetComponentInChildren<Weapon> ();
-		rightWeapon = ((GameObject)Instantiate (Resources.Load ("Weapons/" + rightWeaponPath))).GetComponentInChildren<Weapon> ();
-
+		leftWeapon = ((GameObject)PhotonNetwork.Instantiate ("Weapons/" + leftWeaponPath,transform.position, transform.rotation,0)).GetComponentInChildren<Weapon> ();
+		rightWeapon = ((GameObject)PhotonNetwork.Instantiate ("Weapons/" + rightWeaponPath,transform.position, transform.rotation,0)).GetComponentInChildren<Weapon> ();
 		//leftWeapon = (Weapon) Instantiate (leftWeaponPrefab);
 		//rightWeapon = (Weapon) Instantiate (rightWeaponPrefab);
 
@@ -299,6 +301,10 @@ public class MechMain : Photon.MonoBehaviour {
 			}
 			if(selected == 1)
 			{
+				if(GameObject.FindObjectOfType<NetworkLogic>().online)
+					GameObject.FindObjectOfType<NetworkLogic>().Disconnect();
+				else
+					GameObject.FindObjectOfType<NetworkLogic>().LeaveRoom();
 				Application.LoadLevel(0);
 			}
 		}
@@ -329,6 +335,7 @@ public class MechMain : Photon.MonoBehaviour {
 		if (Input.GetButtonDown (dash)) 
 		{
 			if (energy > (0.0f+dashCost)) {
+				GetComponent<AudioSource>().Play();
 				dashOn = true;
 				energy -= dashCost;
 				if(Input.GetAxis(Horizontal) == 0 && Input.GetAxis(Vertical) == 0)
@@ -387,7 +394,7 @@ public class MechMain : Photon.MonoBehaviour {
 				// END WEAPON FIRIN
 				if (Input.GetButton (jump)) {
 				
-				
+						
 						jumping = true;
 						jumpCount += Time.deltaTime * 1.0f;
 						if (energy >= 0.0f) {			
@@ -399,7 +406,7 @@ public class MechMain : Photon.MonoBehaviour {
 						
 				} 
 						else if (jumping==true && jumpCount < jumpTime && energy >= 0.0f) {
-
+						GetComponent<AudioSource>().Play();
 						jumping = true;
 						GetComponent<Rigidbody> ().AddForce (transform.up * (jumpForce* 1.4f), ForceMode.VelocityChange);
 						energy -= 5;
@@ -504,10 +511,11 @@ public class MechMain : Photon.MonoBehaviour {
 						healthBar.localScale = tempHealth;
 				}
 		if (health3DText != null) {
-						health3DText.GetComponent<TextMesh> ().text = "Health: " + health.ToString("n2") + "%";
+			health3DText.GetComponent<TextMesh> ().text = "Health: " + health.ToString("n2") + "%";
 
-						energy3DText.GetComponent<TextMesh> ().text = "Energy: " + energy.ToString("n2") + "%";
-						recharge3DText.GetComponent<TextMesh> ().text = "Recharge: " + enWait;
+			energy3DText.GetComponent<TextMesh> ().text = "Energy: " + energy.ToString("n2") + "%";
+			recharge3DText.GetComponent<TextMesh> ().text = "Recharge: " + enWait;
+			lives3DText.GetComponent<TextMesh>().text = "Lives: " + lives;
 				}
 	}
 	//TRIGGER METHODS
@@ -571,5 +579,11 @@ public class MechMain : Photon.MonoBehaviour {
 		leftWeapon.transform.parent = null;
 		rightWeapon.GetComponent<Rigidbody> ().AddExplosionForce (3000,transform.position, 10);
 		leftWeapon.GetComponent<Rigidbody> ().AddExplosionForce (3000, transform.position, 10);
+		if (photonView.isMine) {
+			NetworkLogic nl = GameObject.FindObjectOfType<NetworkLogic>();
+			transform.FindChild("Main Camera").gameObject.SetActive(true);
+			nl.respawnTimer = 3.0f;
+			PhotonNetwork.Destroy (gameObject);
+		}
 	}
 }

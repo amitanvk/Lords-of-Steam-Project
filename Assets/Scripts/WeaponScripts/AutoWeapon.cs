@@ -38,19 +38,24 @@ public class AutoWeapon : Weapon {
 			if (rof < counter) {
 				GameObject clone;
 				//clone = PhotonNetwork.Instantiate (bullet.name, spawn.position, spawn.rotation,0)as GameObject;
-				GetComponent<AudioSource>().Play();
+				//if (!GetComponent<AudioSource> ().isPlaying)
+				GetComponent<AudioSource> ().Play ();
 				clone = pooling.InstantiateAPS (bullet.name, spawn.position, spawn.rotation);
-				if(clone==null){
+				if (clone == null) {
 					return;
 				}
-				clone.SetActive(true);
-				clone.GetComponent<SimpleBullet>().Damage = this.damage;
-				clone.GetComponent<Rigidbody>().AddForce(((transform.forward * vel)), ForceMode.Acceleration);
-				clone.GetComponent<Rigidbody>().AddForce((transform.right * (Random.Range(-1.0f,1.0f)) * inaccuracy), ForceMode.Acceleration);
-				clone.GetComponent<Rigidbody>().AddForce((transform.up * (Random.Range(-1.0f,1.0f))  * inaccuracy), ForceMode.Acceleration);
+				clone.SetActive (true);
+				clone.GetComponent<SimpleBullet> ().Damage = this.damage;
+				clone.GetComponent<Rigidbody> ().AddForce (((transform.forward * vel)), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody> ().AddForce ((transform.right * (Random.Range (-1.0f, 1.0f)) * inaccuracy), ForceMode.Acceleration);
+				clone.GetComponent<Rigidbody> ().AddForce ((transform.up * (Random.Range (-1.0f, 1.0f)) * inaccuracy), ForceMode.Acceleration);
 				Parent.Energy -= enCost;
 				counter = 0;
 			}
+		} 
+		else 
+		{
+			GetComponent<AudioSource> ().Stop();
 		}
 	}
 
