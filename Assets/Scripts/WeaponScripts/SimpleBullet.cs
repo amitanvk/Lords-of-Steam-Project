@@ -99,7 +99,7 @@ public class SimpleBullet : Photon.MonoBehaviour {
 			}
 		} 
 		else {
-			//PoolingSystem.DestroyAPS (gameObject);
+			gameObject.DestroyAPS ();
 		}
 		//active = false;
 	}

@@ -18,7 +18,8 @@ public class DieTimer : MonoBehaviour {
 	
 	private void DestroyMe()
 	{
-		if(Time.time - bornTime > dieTime)
-			gameObject.SetActive(false);
+		if (Time.time - bornTime > dieTime)
+			gameObject.SetActive (false);
+			gameObject.DestroyAPS ();
 	}
 }

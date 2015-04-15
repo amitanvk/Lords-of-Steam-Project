@@ -17,30 +17,41 @@ public class ShotgunWeapon : Weapon {
 	void Start () {
 		bNum = magSize;
 		counter = Time.deltaTime;
+		pooling = PoolingSystem.Instance;
 	}
 
 	public override void fire()
 	{
-
 		if (isFiring == true) {
-			for(int i = 0; i < spawnArray.Length; i++)
-			{
-				GameObject clone;
-				clone = Instantiate (bullet, spawnArray[i].position, spawnArray[i].rotation)as GameObject;
-				clone.SendMessage("Damage", damage);
-				clone.GetComponent<Rigidbody>().AddForce((clone.transform.forward * vel), ForceMode.Acceleration);
-				clone.GetComponent<Rigidbody>().AddForce((clone.transform.right * scatterx[i] * inaccuracy), ForceMode.Acceleration);
-				clone.GetComponent<Rigidbody>().AddForce((clone.transform.up * scattery[i]  * inaccuracy), ForceMode.Acceleration);
-				Parent.Energy -= enCost;
-				bNum--;
-				counter = 0;
-				if (bNum <= 0 || !isFiring) {
-					StartCoroutine (wait ());
+			counter+=Time.deltaTime;
+			if (canFire == true && bNum > 0 && rof < counter) {
+				for (int i = 0; i < spawnArray.Length; i++) {
+					GameObject clone;
+					clone = pooling.InstantiateAPS (bullet.name, spawnArray [i].position, spawnArray [i].rotation)as GameObject;
+					if (clone == null) {
+						return;
+					}
+					clone.SetActive (true);
+					clone.GetComponent<SimpleBullet> ().Damage = this.damage;
+					clone.GetComponent<Rigidbody> ().AddForce ((clone.transform.forward * vel), ForceMode.Acceleration);
+					clone.GetComponent<Rigidbody> ().AddForce ((clone.transform.right * scatterx [i] * inaccuracy), ForceMode.Acceleration);
+					clone.GetComponent<Rigidbody> ().AddForce ((clone.transform.up * scattery [i] * inaccuracy), ForceMode.Acceleration);
+					Parent.Energy -= enCost;
+					bNum--;
+					counter = 0;
+					if (bNum <= 0 || !isFiring || i >= spawnArray.Length) {
+						StartCoroutine (wait ());
+					}
 				}
-			}
-			GetComponent<AudioSource>().Play();
+				GetComponent<AudioSource> ().Play ();
 			
+			}
+
+			StartCoroutine (wait ());
 		}
+		else
+			StartCoroutine (wait ());
+
 	}
 	IEnumerator wait(){					
 		canFire = false;

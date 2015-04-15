@@ -6,19 +6,6 @@ public class MechMain : Photon.MonoBehaviour {
 
 	[SerializeField]
 	private GameObject enemyMech;
-	
-
-
-	[SerializeField]
-	private Transform healthBar;
-	[SerializeField]
-	private Transform energyBar;
-
-	// 3D HUD
-	public Transform health3DText;
-	public Transform energy3DText;
-	public Transform recharge3DText;
-	public Transform lives3DText;
 
 	//PAUSE MENU
 	public Transform selector;
@@ -142,6 +129,15 @@ public class MechMain : Photon.MonoBehaviour {
 	private Weapon leftWeapon;
 	private Weapon rightWeapon;
 
+	public bool Controllable {
+		get{
+			return isControllable;
+		}
+		set{
+			isControllable = value;
+		}
+	}
+
 	private bool isDead;
 	private PoolingSystem poolingSystemL;
 	private PoolingSystem poolingSystemR;
@@ -191,10 +187,13 @@ public class MechMain : Photon.MonoBehaviour {
 		Attach (leftWeapon, leftWeaponAttachPoint,-1);
 		leftWeapon.GetComponent<Weapon> ().pool = poolingSystemL;
 		Attach (rightWeapon, rightWeaponAttachPoint,1);
+
+		//gameObject.GetComponent<PhotonView> ().RPC ("Attach", PhotonTargets.AllBuffered, leftWeapon, leftWeaponAttachPoint, -1);
+		//gameObject.GetComponent<PhotonView> ().RPC ("Attach", PhotonTargets.AllBuffered, rightWeapon, rightWeaponAttachPoint, 1);
 		rightWeapon.GetComponent<Weapon> ().pool = poolingSystemR;
 		isDead = false;
 	}
-
+	[RPC]
 	void Attach(Weapon prefab, Transform location, float dir) {
 		Transform weaponAttachPoint = prefab.attachPoint;
 		Transform prefabTransform = prefab.transform;
@@ -210,7 +209,7 @@ public class MechMain : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		UpdateGUI ();
+		//UpdateGUI ();
 		State ();
 
 	}
@@ -284,7 +283,7 @@ public class MechMain : Photon.MonoBehaviour {
 		newPos.z += 0.01f;
 		selector.transform.position = newPos;
 
-		if (Input.GetButtonDown (jump)) 
+		if (Input.GetButtonDown (jump) || Input.GetKeyDown(KeyCode.Return)) 
 		{
 			if(selected == 0)
 			{
@@ -371,7 +370,7 @@ public class MechMain : Photon.MonoBehaviour {
 		}
 		*/
 				//WEAPON FIRING
-		if (Input.GetButton (FireLeft) && energy >= 0) {
+		if ((Input.GetButton (FireLeft) || Input.GetMouseButton(0) )&& energy >= 0) {
 						leftFiring = true;
 						leftWeapon.isFiring = true;
 						leftWeapon.fire ();
@@ -380,7 +379,7 @@ public class MechMain : Photon.MonoBehaviour {
 						leftFiring = false;
 						leftWeapon.isFiring = false;
 				}
-				if (Input.GetButton (FireRight) && energy >= 0) {
+		if ((Input.GetButton (FireRight)|| Input.GetMouseButton(1))  && energy >= 0) {
 						rightFiring = true;						
 						rightWeapon.isFiring = true;
 						rightWeapon.fire ();
@@ -497,27 +496,17 @@ public class MechMain : Photon.MonoBehaviour {
 	void OnGui(){
 		GUILayout.Label (health + "         " + energy);
 	}
-	void UpdateGUI()
-	{
-		if (energyBar != null) {
-						const float scaling = 1.45f;
-						float healthDisplay = Mathf.Clamp (health, 0f, healthMax);
-						float energyDisplay = Mathf.Clamp (energy, 0f, energyMax);
-						Vector3 tempHealth = healthBar.localScale;
-						Vector3 tempEnergy = energyBar.localScale;
-						tempHealth.x = (health / healthMax) * scaling;
-						tempEnergy.x = (energy / energyMax) * scaling;
-						energyBar.localScale = tempEnergy;
-						healthBar.localScale = tempHealth;
-				}
-		if (health3DText != null) {
-			health3DText.GetComponent<TextMesh> ().text = "Health: " + health.ToString("n2") + "%";
-
-			energy3DText.GetComponent<TextMesh> ().text = "Energy: " + energy.ToString("n2") + "%";
-			recharge3DText.GetComponent<TextMesh> ().text = "Recharge: " + enWait;
-			lives3DText.GetComponent<TextMesh>().text = "Lives: " + lives;
-				}
-	}
+//	void UpdateGUI()
+//	{				
+//		if (health3DText != null) {
+//			health3DText.GetComponent<TextMesh> ().text = "Health: " + health.ToString("n2") + "%";
+//
+//			energy3DText.GetComponent<TextMesh> ().text = "Energy: " + energy.ToString("n2") + "%";
+//			recharge3DText.GetComponent<TextMesh> ().text = "Recharge: " + enWait;
+//			lives3DText.GetComponent<TextMesh>().text = "Lives: " + lives;
+//				
+//		}
+//	}
 	//TRIGGER METHODS
 	void OnTriggerStay(Collider other)
 	{

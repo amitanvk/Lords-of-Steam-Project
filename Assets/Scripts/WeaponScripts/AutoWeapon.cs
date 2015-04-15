@@ -40,7 +40,7 @@ public class AutoWeapon : Weapon {
 				//clone = PhotonNetwork.Instantiate (bullet.name, spawn.position, spawn.rotation,0)as GameObject;
 				//if (!GetComponent<AudioSource> ().isPlaying)
 				GetComponent<AudioSource> ().Play ();
-				clone = pooling.InstantiateAPS (bullet.name, spawn.position, spawn.rotation);
+				clone = pooling.InstantiateAPS (bullet.name, spawn.position, spawn.rotation)as GameObject;
 				if (clone == null) {
 					return;
 				}

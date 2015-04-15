@@ -36,4 +36,6 @@ MonoBehaviour:
   - InstantiateAPS
   - particleSystems
   - stopParticle
+  - gunEffect
+  - Attach
   DisableAutoOpenWizard: 0

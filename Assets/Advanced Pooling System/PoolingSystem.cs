@@ -101,8 +101,10 @@ public sealed class PoolingSystem : Photon.MonoBehaviour {
 	//[RPC]
 	public static void DestroyAPS(GameObject myObject)
 	{
-		myObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-		myObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+	
+
+			
+		
 
 		myObject.SetActive(false);
 
@@ -120,6 +122,8 @@ public sealed class PoolingSystem : Photon.MonoBehaviour {
 	public GameObject InstantiateAPS (string itemType, Vector3 itemPosition, Quaternion itemRotation)
 	{
 		GameObject newObject = GetPooledItem(itemType);
+		newObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		//newObject.GetComponent<Rigidbody> ().velocity = Quaternion.identity;
 		newObject.transform.position = itemPosition;
 		newObject.transform.rotation = itemRotation;
 		//newObject.SetActive(true);
